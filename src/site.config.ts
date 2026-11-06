@@ -12,11 +12,11 @@ export const SUBSTACK_URL = `https://${SUBSTACK_SUBDOMAIN}.substack.com`;
 
 /**
  * Contact and speaking forms post to /api/contact, which emails CONTACT_TO
- * via Cloudflare Email Service. CONTACT_FROM must be on the onboarded adamjwalker.com domain.
+ * via Cloudflare Email Service. CONTACT_FROM must be on the onboarded sending domain (mail.adamjwalker.com).
  */
 export const CONTACT_ENDPOINT = "/api/contact";
 export const CONTACT_TO = "adam@adamjwalker.com";
-export const CONTACT_FROM = "forms@adamjwalker.com";
+export const CONTACT_FROM = "forms@mail.adamjwalker.com";
 
 export const NAV = [
 	{ label: "Writing", href: "/writing" },

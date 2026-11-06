@@ -16,7 +16,7 @@
 			"bucket_name": "adamjwalker-media",
 		},
 	],
-	// Contact + speaking forms → Cloudflare Email Service (sending domain onboarded on cf-bounce.adamjwalker.com).
+	// Contact + speaking forms → Cloudflare Email Service (sending domain: mail.adamjwalker.com).
 	// adamjwalker.com inbound mail stays on Microsoft 365; do not enable Email Routing.
 	"send_email": [{ "name": "EMAIL", "remote": true }],
 	// Sandboxed plugins require Worker Loader, available on Workers paid plans. Uncomment to enable:
