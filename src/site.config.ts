@@ -11,10 +11,13 @@ export const SUBSTACK_SIGNUP_URL = `https://${SUBSTACK_SUBDOMAIN}.substack.com/a
 export const SUBSTACK_URL = `https://${SUBSTACK_SUBDOMAIN}.substack.com`;
 
 /**
- * TODO: contact and speaking forms post to /api/contact, which needs a
- * delivery service (e.g. Cloudflare Email Routing or Resend) before launch.
+ * Contact and speaking forms post to /api/contact, which emails CONTACT_TO
+ * via Cloudflare Email Routing. CONTACT_TO must be a verified destination
+ * address in Email Routing, and CONTACT_FROM must be on the adamjwalker.com zone.
  */
 export const CONTACT_ENDPOINT = "/api/contact";
+export const CONTACT_TO = "adam@storysafe.co";
+export const CONTACT_FROM = "forms@adamjwalker.com";
 
 export const NAV = [
 	{ label: "Writing", href: "/writing" },

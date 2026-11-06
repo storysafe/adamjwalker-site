@@ -1,0 +1,19 @@
+---
+// Old WordPress category archives → the four new categories
+const MAP: Record<string, string> = {
+	marketing: "marketing",
+	business: "marketing",
+	technology: "technology",
+	"tech-talk-yall": "technology",
+	leadership: "leadership",
+	productivity: "leadership",
+	"habit-building": "leadership",
+	"life-hacking": "leadership",
+	busyness: "leadership",
+	"the-family-man-entrepreneur": "leadership",
+};
+const parts = (Astro.params.slug ?? "").split("/").filter(Boolean);
+const last = parts[parts.length - 1] ?? "";
+const target = MAP[last] ?? "living";
+return Astro.redirect(`/writing/category/${target}`, 301);
+---

@@ -7,6 +7,18 @@ import emdash from "emdash/astro";
 export default defineConfig({
 	output: "server",
 	adapter: cloudflare(),
+	redirects: {
+		"/blog": "/writing",
+		"/feed": "/rss.xml",
+		"/about": "/now",
+		"/about-the-author": "/now",
+		"/consulting": "/work-with-me",
+		"/contact": "/work-with-me",
+		"/marketing-mentor": "/work-with-me",
+		"/free-website-consult": "/work-with-me",
+		"/website-messaging-analysis": "/work-with-me",
+		"/newsletters": "/",
+	},
 	image: {
 		layout: "constrained",
 		responsiveStyles: true,

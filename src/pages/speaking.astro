@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import { CONTACT_ENDPOINT } from "../site.config";
 
 const sent = Astro.url.searchParams.get("sent") === "1";
+const failed = Astro.url.searchParams.get("error") === "1";
 
 const talks = [
 	{ tag: "Marketing", title: "Best Practices Are Just Average Practices", formats: "Keynote · Workshop", gold: false },
@@ -98,6 +99,7 @@ const events = [
 				<input type="hidden" name="form" value="speaking" />
 				<label class="sr-only" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
 				{sent && <p class="sent" role="status">Thanks, I’ll be in touch about your event.</p>}
+				{failed && <p class="sent" role="alert" style="background: var(--rust); color: #fff;">Something went wrong sending that. Please try again.</p>}
 				<label class="field-label">Name<input class="field" type="text" name="name" autocomplete="name" required /></label>
 				<label class="field-label">Email<input class="field" type="email" name="email" autocomplete="email" required /></label>
 				<label class="field-label">Event name<input class="field" type="text" name="event" required /></label>
