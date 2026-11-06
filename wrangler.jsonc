@@ -16,8 +16,9 @@
 			"bucket_name": "adamjwalker-media",
 		},
 	],
-	// Contact + speaking forms: SEND_EMAIL binding is added once outbound email is set up.
-	// adamjwalker.com mail runs on Microsoft 365, so Email Routing (which replaces MX) must stay off.
+	// Contact + speaking forms → Cloudflare Email Service (sending domain onboarded on cf-bounce.adamjwalker.com).
+	// adamjwalker.com inbound mail stays on Microsoft 365; do not enable Email Routing.
+	"send_email": [{ "name": "EMAIL", "remote": true }],
 	// Sandboxed plugins require Worker Loader, available on Workers paid plans. Uncomment to enable:
 	// "worker_loaders": [{ "binding": "LOADER" }],
 	// General maintenance cron trigger

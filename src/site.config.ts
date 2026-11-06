@@ -12,8 +12,7 @@ export const SUBSTACK_URL = `https://${SUBSTACK_SUBDOMAIN}.substack.com`;
 
 /**
  * Contact and speaking forms post to /api/contact, which emails CONTACT_TO
- * via Cloudflare Email Routing. CONTACT_TO must be a verified destination
- * address in Email Routing, and CONTACT_FROM must be on the adamjwalker.com zone.
+ * via Cloudflare Email Service. CONTACT_FROM must be on the onboarded adamjwalker.com domain.
  */
 export const CONTACT_ENDPOINT = "/api/contact";
 export const CONTACT_TO = "adam@adamjwalker.com";
