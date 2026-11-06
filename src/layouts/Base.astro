@@ -1,0 +1,148 @@
+---
+import { getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import { Font } from "astro:assets";
+import { getSiteLocale } from "../utils/locale";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+import Fedora from "../components/Fedora.astro";
+import { NAV, SOCIAL } from "../site.config";
+import "../styles/site.css";
+
+interface Props {
+	title: string;
+	pageTitle?: string | null;
+	description?: string | null;
+	image?: string | null;
+	canonical?: string | null;
+	robots?: string | null;
+	type?: "website" | "article";
+	publishedTime?: string | null;
+	modifiedTime?: string | null;
+	author?: string | null;
+	/** Pass content reference for plugin page contributions on content pages */
+	content?: { collection: string; id: string; slug?: string | null };
+}
+
+const {
+	title,
+	pageTitle,
+	description,
+	image,
+	canonical,
+	robots,
+	type = "website",
+	publishedTime,
+	modifiedTime,
+	author,
+	content,
+} = Astro.props;
+
+const settingsResult = await getSiteSettingsWithCacheHint();
+if (Astro.cache?.enabled) Astro.cache.set(settingsResult.cacheHint);
+
+const { siteTitle, siteTagline } = resolveBlogSiteIdentity(settingsResult.data);
+const fullTitle =
+	title === siteTitle || title.endsWith(`— ${siteTitle}`) ? title : `${title} — ${siteTitle}`;
+
+const pageCtx = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType: type,
+	title: fullTitle,
+	pageTitle: pageTitle ?? title,
+	description: description ?? siteTagline,
+	canonical,
+	image,
+	content,
+	seo: { ogImage: image, robots },
+	articleMeta: { publishedTime, modifiedTime, author },
+	siteName: siteTitle,
+});
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+function current(href: string) {
+	if (href === currentPath) return "page";
+	if (href !== "/" && currentPath.startsWith(`${href}/`)) return "true";
+	return undefined;
+}
+
+const lang = getSiteLocale() ?? "en";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<Font cssVariable="--font-display" preload />
+		<Font cssVariable="--font-body" preload />
+		<Font cssVariable="--font-hand" />
+		<title>{fullTitle}</title>
+		<EmDashHead page={pageCtx} />
+		<link rel="alternate" type="application/rss+xml" title={`${siteTitle} RSS Feed`} href="/rss.xml" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<EmDashBodyStart page={pageCtx} />
+		<a class="skip-link" href="#main">Skip to content</a>
+
+		<header class="site-header">
+			<div class="wrap">
+				<a href="/" class="brand">
+					<Fedora />
+					<span>{siteTitle}</span>
+				</a>
+				<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+					Menu
+				</button>
+				<nav class="site-nav" id="site-nav" aria-label="Main">
+					<ul>
+						{
+							NAV.map((item) => (
+								<li>
+									<a href={item.href} aria-current={current(item.href)}>
+										{item.label}
+									</a>
+								</li>
+							))
+						}
+						<li><a href="/#subscribe" class="nav-cta">Subscribe</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main id="main">
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<div class="wrap">
+				<div>
+					<Fedora width={34} strokeWidth={2.8} pinch={false} />
+					<span class="muted">© {year} {siteTitle} · Lilburn, Georgia</span>
+				</div>
+				<nav aria-label="Social">
+					<ul>
+						{SOCIAL.map((s) => <li><a href={s.href} rel="me noopener">{s.label}</a></li>)}
+						<li><a href="/rss.xml">RSS</a></li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+
+		<script>
+			const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+			const nav = document.getElementById("site-nav");
+			toggle?.addEventListener("click", () => {
+				const open = toggle.getAttribute("aria-expanded") === "true";
+				toggle.setAttribute("aria-expanded", String(!open));
+				nav?.classList.toggle("is-open", !open);
+			});
+		</script>
+		<EmDashBodyEnd page={pageCtx} />
+	</body>
+</html>

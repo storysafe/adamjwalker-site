@@ -1,0 +1,82 @@
+---
+import type { ContentEntry, InferCollectionData } from "emdash";
+import { Image } from "emdash/ui";
+import { formatDate } from "../utils/locale";
+
+interface Props {
+	post: ContentEntry<InferCollectionData<"posts">>;
+	category?: { slug: string; label: string } | null;
+	/** feature: big split card. card: index card. row: archive line. */
+	variant?: "feature" | "card" | "row";
+	headingLevel?: 2 | 3;
+	tilt?: number;
+	priority?: boolean;
+}
+
+const { post, category, variant = "card", headingLevel = 3, tilt = 0, priority = false } = Astro.props;
+const Heading = `h${headingLevel}` as const;
+const href = `/writing/${post.id}`;
+const title = post.data.title || "Untitled";
+const publishedAt = post.data.publishedAt ?? null;
+const dateShort = publishedAt ? formatDate(publishedAt, "short") : null;
+---
+
+{
+	variant === "feature" && (
+		<article class="feature">
+			<a href={href} class="feature__media" tabindex="-1" aria-hidden="true">
+				{post.data.featured_image ? (
+					<Image image={post.data.featured_image} sizes="(min-width: 900px) 520px, 100vw" priority={priority} />
+				) : (
+					<div class="placeholder" style="height: 100%; min-height: 280px;">
+						<span aria-hidden="true" style="font-family: var(--font-hand); font-size: 34px;">from the notebook</span>
+					</div>
+				)}
+			</a>
+			<div class="feature__body">
+				<span class="stamp">
+					{[category?.label, "Featured"].filter(Boolean).join(" · ")}
+				</span>
+				<Heading class="h-md" style="font-size: clamp(32px, 4vw, 44px);" {...post.edit.title}>
+					<a href={href}>{title}</a>
+				</Heading>
+				{post.data.excerpt && (
+					<p style="font-size: 19px; color: var(--ink-soft);" {...post.edit.excerpt}>
+						{post.data.excerpt}
+					</p>
+				)}
+				<a href={href} class="more">Read the essay →</a>
+			</div>
+		</article>
+	)
+}
+
+{
+	variant === "card" && (
+		<article class="index-card" style={tilt ? `transform: rotate(${tilt}deg)` : undefined}>
+			<span class="label">{[category?.label, dateShort].filter(Boolean).join(" · ")}</span>
+			<Heading class="h-sm" style="font-weight: 650;" {...post.edit.title}>
+				<a href={href}>{title}</a>
+			</Heading>
+			{post.data.excerpt && <p style="font-size: 16px; color: var(--ink-soft);">{post.data.excerpt}</p>}
+			<a href={href} class="more" style="margin-top: auto;" aria-label={`Read ${title}`}>
+				Read →
+			</a>
+		</article>
+	)
+}
+
+{
+	variant === "row" && (
+		<article class="post-row">
+			{publishedAt ? <time datetime={publishedAt.toISOString()}>{dateShort}</time> : <span class="date" />}
+			<div class="stack" style="--stack-gap: 8px;">
+				{category && <span class="label">{category.label}</span>}
+				<Heading class="row-title" {...post.edit.title}>
+					<a href={href}>{title}</a>
+				</Heading>
+				{post.data.excerpt && <p style="font-size: 16px; color: var(--ink-soft);">{post.data.excerpt}</p>}
+			</div>
+		</article>
+	)
+}

@@ -1,0 +1,26 @@
+---
+import Base from "../../layouts/Base.astro";
+import WritingArchive from "../../components/WritingArchive.astro";
+
+const cursor = Astro.url.searchParams.get("cursor") || undefined;
+---
+
+<Base title="Writing" description="Essays on marketing, technology, and leadership, plus reading, fatherhood, and the occasional plastic sword.">
+	<header class="wrap" style="padding-block: 48px 40px; display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: flex-end; justify-content: space-between;">
+		<div class="stack" style="flex: 999 1 560px; min-width: 0; --stack-gap: 16px;">
+			<p class="hand hand--tilt">from the notebook</p>
+			<h1 class="display">Writing</h1>
+			<p class="lead">Marketing, tech, and leadership, minus the hype. Plus reading, fatherhood, and the occasional plastic sword.</p>
+		</div>
+		<form role="search" action="/search" method="get" class="stack" style="flex: 1 1 340px; --stack-gap: 8px;">
+			<label for="q" class="field-label">Search the archive</label>
+			<div style="display: flex; gap: 8px;">
+				<input id="q" name="q" type="search" class="field" placeholder="Try “reading” or “AI”" />
+				<button type="submit" class="btn btn--ink" aria-label="Search" style="flex: 0 0 56px; padding: 0; box-shadow: none;">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+				</button>
+			</div>
+		</form>
+	</header>
+	<WritingArchive cursor={cursor} />
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/Base.astro";
+import Fedora from "../components/Fedora.astro";
+Astro.response.status = 404;
+---
+
+<Base title="Page not found" robots="noindex">
+	<section class="wrap stack" style="max-width: 760px; padding-block: 96px 120px; text-align: center; align-items: center; --stack-gap: 24px;">
+		<Fedora width={120} strokeWidth={2.2} />
+		<p class="hand" style="transform: rotate(-2deg);">well, this is awkward</p>
+		<h1 class="display" style="font-size: clamp(48px, 7vw, 80px);">That page wandered off.</h1>
+		<p class="lead" style="margin-inline: auto;">The link may be old, or the page moved when the site got rebuilt. Try the writing archive or head home.</p>
+		<div class="btn-row" style="justify-content: center;">
+			<a href="/" class="btn btn--ink">Go home</a>
+			<a href="/writing" class="btn btn--ghost">Browse writing</a>
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,41 @@
+---
+import { SUBSTACK_SIGNUP_URL } from "../site.config";
+
+interface Props {
+	label?: string;
+	button?: string;
+	variant?: "ink" | "rust";
+	id?: string;
+}
+const {
+	label = "Get the weekly newsletter",
+	button = "Subscribe on Substack",
+	variant = "ink",
+	id = "email",
+} = Astro.props;
+---
+
+<form class="subscribe" action={SUBSTACK_SIGNUP_URL} method="post" target="_blank">
+	<label class="field-label" for={id}>
+		{label}
+		<input class="field" id={id} type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+	</label>
+	<button type="submit" class:list={["btn", variant === "ink" ? "btn--ink" : "btn--rust"]}>
+		{button}
+	</button>
+</form>
+
+<style>
+	.subscribe {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		align-items: flex-end;
+	}
+	.subscribe .field-label {
+		flex: 1 1 240px;
+	}
+	.subscribe .btn {
+		min-height: 56px;
+	}
+</style>

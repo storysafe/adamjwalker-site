@@ -1,0 +1,180 @@
+---
+import Base from "../layouts/Base.astro";
+import { CONTACT_ENDPOINT } from "../site.config";
+
+const sent = Astro.url.searchParams.get("sent") === "1";
+
+const talks = [
+	{ tag: "Marketing", title: "Best Practices Are Just Average Practices", formats: "Keynote · Workshop", gold: false },
+	{ tag: "Technology", title: "AI Without the Hype", formats: "Keynote · Workshop", gold: true },
+	{ tag: "Leadership", title: "What 1,000 Days of Reading Taught Me About Leading", formats: "Keynote", gold: false },
+];
+const formats = [
+	["Keynotes", "30–45 minutes"],
+	["Workshops", "90 minutes to a half day"],
+	["Panels & fireside chats", "30–60 minutes"],
+	["Podcast guest", "30–60 minutes, remote or in studio"],
+];
+const events = [
+	{ name: "WordCamp ATL", note: "Atlanta", dark: false, tilt: -0.8 },
+	{ name: "WordCamp London", note: "London", dark: false, tilt: 0.6 },
+	{ name: "WIT Career Expo", note: "Women in Technology", dark: false, tilt: 0.5 },
+	{ name: "48in48 Global", note: "Nonprofit tech event", dark: true, tilt: -0.6 },
+];
+---
+
+<Base title="Speaking" description="Talks and workshops on marketing, technology, and leadership, minus the hype. Book Adam Walker for your event.">
+	<section class="wrap" style="padding-block: 48px 88px;">
+		<div class="split">
+			<div class="grow stack" style="--stack-gap: 24px;">
+				<p class="hand hand--tilt">on stage, fedora included</p>
+				<h1 class="display" style="font-size: clamp(56px, 7vw, 84px);">Speaking</h1>
+				<p class="lead" style="font-size: 21px;">Talks and workshops on marketing, technology, and leadership, minus the hype. I make complex ideas easy to understand, and I bring that to the room.</p>
+				<div class="btn-row">
+					<a href="#book" class="btn btn--ink">Book Adam for your event</a>
+				</div>
+			</div>
+			<div class="side" style="display: flex; justify-content: center; flex-basis: 380px;">
+				<figure class="polaroid" style="width: 440px; transform: rotate(-2deg); padding-bottom: 58px;">
+					<div class="tape" style="left: auto; right: 18%; transform: rotate(5deg);"></div>
+					<div class="placeholder" style="aspect-ratio: 4 / 3;">[Photo of Adam speaking]</div>
+					<figcaption style="font-size: 26px;">[event name, year]</figcaption>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<section class="band-strip" style="border-bottom: 0;">
+		<div class="wrap section stack" style="--stack-gap: 40px; padding-block: 88px;">
+			<div class="stack" style="--stack-gap: 8px;">
+				<p class="hand" style="font-size: 28px;">what I talk about</p>
+				<h2 class="h-lg">Talks</h2>
+			</div>
+			<div class="grid" style="--grid-gap: 24px;">
+				{
+					talks.map((t) => (
+						<article class:list={["card", "card--shadow", { "card--gold": t.gold }]}>
+							<span class="stamp" style={t.gold ? "border-color: var(--ink); color: var(--ink);" : undefined}>{t.tag}</span>
+							<h3 style="font-size: 30px; line-height: 1.1;">{t.title}</h3>
+							<p style={t.gold ? undefined : "color: var(--ink-soft);"}>[Two-line talk description and the audience it’s for.]</p>
+							<span class="push" style="font-size: 14px; font-weight: 600;">{t.formats}</span>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="wrap section" style="display: flex; flex-wrap: wrap; gap: 56px; padding-block: 88px;">
+		<div class="stack" style="flex: 1 1 380px; --stack-gap: 18px;">
+			<h2 class="h-md">Ways I show up</h2>
+			<ul class="formats">
+				{formats.map(([name, length]) => <li><strong>{name}</strong><span class="muted">{length}</span></li>)}
+			</ul>
+		</div>
+		<div class="stack" style="flex: 1 1 480px; --stack-gap: 18px;">
+			<h2 class="h-md">Where I’ve spoken</h2>
+			<div class="grid" style="--min: 200px; --grid-gap: 16px;">
+				{
+					events.map((e) => (
+						<div class:list={["card", "event", { "card--ink": e.dark }]} style={`transform: rotate(${e.tilt}deg)`}>
+							<strong>{e.name}</strong>
+							<span style={e.dark ? "color: var(--gold);" : "color: var(--muted);"}>{e.note}</span>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="book" class="band-ink">
+		<div class="wrap section" style="display: flex; flex-wrap: wrap; gap: 56px;">
+			<div class="stack" style="flex: 1 1 360px; --stack-gap: 18px;">
+				<p class="hand">bring me in</p>
+				<h2 class="h-lg" style="line-height: 1.05;">Book Adam for your event.</h2>
+				<p class="lead">Tell me about the room and what you want people to walk away with.</p>
+			</div>
+			<form method="post" action={CONTACT_ENDPOINT} class="book-form">
+				<input type="hidden" name="form" value="speaking" />
+				<label class="sr-only" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+				{sent && <p class="sent" role="status">Thanks, I’ll be in touch about your event.</p>}
+				<label class="field-label">Name<input class="field" type="text" name="name" autocomplete="name" required /></label>
+				<label class="field-label">Email<input class="field" type="email" name="email" autocomplete="email" required /></label>
+				<label class="field-label">Event name<input class="field" type="text" name="event" required /></label>
+				<label class="field-label">Event date<input class="field" type="date" name="date" /></label>
+				<label class="field-label">Audience size<input class="field" type="text" name="audience_size" /></label>
+				<label class="field-label">Format
+					<select class="field" name="format">
+						<option>Keynote</option><option>Workshop</option><option>Panel / fireside chat</option><option>Podcast guest</option>
+					</select>
+				</label>
+				<label class="field-label full">About the audience<textarea class="field" name="message" rows="4"></textarea></label>
+				<div class="full" style="display: flex; justify-content: flex-end;">
+					<button type="submit" class="btn btn--rust" style="min-height: 56px;">Send request</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.formats {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.formats li {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 4px 16px;
+		padding: 16px 0;
+		border-bottom: 1.5px dashed var(--rule);
+		font-size: 18px;
+	}
+	.event {
+		min-height: 110px;
+		padding: 20px;
+		gap: 4px;
+		border-radius: 12px;
+		justify-content: center;
+	}
+	.event strong {
+		font-family: var(--font-display);
+		font-size: 26px;
+		line-height: 1.1;
+	}
+	.event span {
+		font-size: 14px;
+		font-weight: 600;
+	}
+	.book-form {
+		flex: 999 1 520px;
+		min-width: 0;
+		background: var(--card);
+		color: var(--ink);
+		border-radius: 16px;
+		padding: 36px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 18px;
+	}
+	.book-form .full,
+	.book-form .sent {
+		grid-column: 1 / -1;
+	}
+	.book-form .field-label {
+		color: var(--muted);
+	}
+	.sent {
+		padding: 14px 18px;
+		background: var(--gold);
+		border-radius: 10px;
+		font-weight: 600;
+	}
+	@media (max-width: 600px) {
+		.book-form {
+			padding: 24px;
+		}
+	}
+</style>

@@ -1,0 +1,34 @@
+---
+interface Props {
+	width?: number;
+	color?: string;
+	accent?: string;
+	strokeWidth?: number;
+	pinch?: boolean;
+}
+const {
+	width = 44,
+	color = "var(--ink)",
+	accent = "var(--rust)",
+	strokeWidth = 2.6,
+	pinch = true,
+} = Astro.props;
+const height = Math.round((width * 40) / 64);
+---
+
+<svg
+	width={width}
+	height={height}
+	viewBox="0 0 64 40"
+	fill="none"
+	stroke={color}
+	stroke-width={strokeWidth}
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	aria-hidden="true"
+>
+	<path d="M4 30c8 5 48 5 56 0"></path>
+	<path d="M14 29c0-10 2-19 8-22 4-2 7 2 10 2s6-4 10-2c6 3 8 12 8 22"></path>
+	<path d="M15 23c10 3 24 3 34 0" stroke={accent}></path>
+	{pinch && <path d="M27 10c2 3 8 3 10 0"></path>}
+</svg>

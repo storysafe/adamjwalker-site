@@ -1,0 +1,267 @@
+---
+import { getEmDashCollection, getTaxonomyTermsWithCacheHint } from "emdash";
+import Base from "../layouts/Base.astro";
+import PostCard from "../components/PostCard.astro";
+import SubscribeForm from "../components/SubscribeForm.astro";
+import { withCategories } from "../utils/posts";
+import { PODCAST_URL, ENABLE_GOOD_URL, TOGETHER_LETTERS_URL, EDGEWISE_URL } from "../site.config";
+
+const { entries, cacheHint } = await getEmDashCollection("posts", {
+	orderBy: { published_at: "desc" },
+	limit: 7,
+});
+const terms = await getTaxonomyTermsWithCacheHint("category", { includeCounts: false });
+if (Astro.cache?.enabled) {
+	Astro.cache.set(cacheHint);
+	Astro.cache.set(terms.cacheHint);
+}
+const posts = await withCategories(entries);
+const [featured, ...rest] = posts;
+const tilts = [-0.6, 0.5, -0.4, 0.4, -0.5, 0.6];
+---
+
+<Base title="Adam Walker" description="Marketing, tech & leadership, minus the hype. Fractional CMO and Technology Lead for nonprofits and growing businesses.">
+	<!-- Hero -->
+	<section class="wrap" style="padding-block: 56px 96px;">
+		<div class="split" style="gap: 64px;">
+			<div class="grow stack" style="--stack-gap: 28px;">
+				<p class="hand hand--tilt">marketing, tech &amp; leadership, minus the hype</p>
+				<h1 class="display">
+					Hi. I’m <span class="squiggle">Adam<svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16c40-10 90-12 140-6s100 4 152-6" fill="none" stroke="#A8401F" stroke-width="6" stroke-linecap="round"></path></svg></span> Walker.
+				</h1>
+				<p class="italic-serif" style="font-size: clamp(24px, 3vw, 30px); line-height: 1.35; color: var(--ink-soft); max-width: 620px;">
+					Husband. Father of five. Wearer of fedoras. <span class="hl">Helper of nonprofits.</span>
+				</p>
+				<div class="chip-row" style="font-size: 16px; font-weight: 600;">
+					<span class="muted">At work, I wear two hats:</span>
+					<a href="#hats" class="chip" style="border-color: var(--rust); color: var(--rust);">Fractional CMO</a>
+					<span aria-hidden="true" style="font-family: var(--font-hand); font-size: 24px;" class="muted">+</span>
+					<a href="#hats" class="chip" style="background: var(--gold);">Technology Lead</a>
+				</div>
+				<div id="subscribe" style="max-width: 560px; margin-top: 8px;">
+					<SubscribeForm id="hero-email" />
+					<p class="muted" style="font-size: 14px; margin-top: 12px;">Weekly marketing newsletter, delivered through Substack.</p>
+				</div>
+			</div>
+			<div class="side" style="display: flex; justify-content: center;">
+				<figure class="polaroid">
+					<div class="tape"></div>
+					<div class="placeholder" style="aspect-ratio: 4 / 5;">[Photo of Adam — fedora on]</div>
+					<figcaption>the fedora stays on</figcaption>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<!-- Currently -->
+	<section class="band-strip" aria-label="Currently">
+		<div class="wrap" style="padding-block: 18px; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center;">
+			<span class="hand" style="font-size: 26px;">currently —</span>
+			<span>Fractional CMO &amp; Technology Lead</span>
+			<span aria-hidden="true" style="color: var(--rust);">✦</span>
+			<span>Executive Director, 48in48</span>
+			<span aria-hidden="true" style="color: var(--rust);">✦</span>
+			<span>Co-host, Tech Talk, Y’all</span>
+			<a href="/now" class="more" style="margin-left: auto;">See my Now page →</a>
+		</div>
+	</section>
+
+	<!-- Two hats -->
+	<section id="hats" class="band-ink">
+		<div class="wrap section stack" style="--stack-gap: 48px;">
+			<div class="stack" style="align-items: center; text-align: center; --stack-gap: 14px;">
+				<p class="hand" style="font-size: 32px; transform: rotate(-2deg);">two hats, one fedora</p>
+				<h2 class="h-xl" style="max-width: 900px; font-size: clamp(40px, 5.5vw, 64px);">Marketing lead. Technology lead. Or both.</h2>
+				<p class="lead" style="max-width: 680px;">I make complex ideas and messages easy to understand, whether the thing that’s stuck is your message or your tools.</p>
+			</div>
+			<div class="grid" style="--min: 320px;">
+				<article class="card tilt-l" style="padding: 40px; gap: 18px; box-shadow: 8px 8px 0 var(--rust); border-color: transparent;">
+					<p class="hand" style="font-size: 28px; color: var(--rust);">the marketing hat</p>
+					<h3 class="h-md" style="font-size: 44px;">Fractional CMO</h3>
+					<p class="italic-serif" style="font-size: 24px; line-height: 1.3; color: var(--ink-soft);">Is your marketing broken? I can help fix it.</p>
+					<ul class="hat-list">
+						<li><strong>Fractional CMO</strong> — three months or longer, leading your team to build and execute a plan</li>
+						<li><strong>Marketing leadership</strong> — someone who owns the message, the plan, and the results</li>
+					</ul>
+					<a href="/work-with-me#marketing" class="more push">Hire the marketing lead →</a>
+				</article>
+				<article class="card card--gold tilt-r" style="padding: 40px; gap: 18px; box-shadow: 8px 8px 0 var(--card); border-color: transparent;">
+					<p class="hand" style="font-size: 28px; color: var(--ink);">the technology hat</p>
+					<h3 class="h-md" style="font-size: 44px;">Technology Lead</h3>
+					<p class="italic-serif" style="font-size: 24px; line-height: 1.3;">AI without the hype. Tech your team will actually use.</p>
+					<ul class="hat-list">
+						<li><strong>Tech strategy &amp; roadmap</strong> — what to buy, build, and stop paying for</li>
+						<li><strong>AI adoption &amp; training</strong> — where AI saves real time, and where it doesn’t</li>
+						<li><strong>Websites &amp; digital</strong> — rebuilds, re-platforms, and the tools around them</li>
+						<li><strong>Systems &amp; tools</strong> — CRM, donor database, project tools, automations</li>
+					</ul>
+					<a href="/work-with-me#technology" class="more push" style="color: var(--ink);">Hire the technology lead →</a>
+				</article>
+			</div>
+			<p style="text-align: center; color: var(--on-ink-soft);">Especially for nonprofits: built on 11 years and 1,700+ nonprofit websites with 48in48.</p>
+		</div>
+	</section>
+
+	<!-- Writing -->
+	<section class="wrap stack" style="padding-block: 96px 40px; --stack-gap: 40px;">
+		<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px;">
+			<div class="stack" style="--stack-gap: 8px;">
+				<p class="hand" style="font-size: 28px;">from the notebook</p>
+				<h2 class="h-lg">Writing</h2>
+			</div>
+			<nav class="chip-row" aria-label="Writing topics">
+				<a href="/writing" class="chip" aria-current="page">All</a>
+				{terms.data.map((t) => <a href={`/writing/category/${t.slug}`} class="chip">{t.label}</a>)}
+			</nav>
+		</div>
+		{featured && <PostCard post={featured.post} category={featured.category} variant="feature" headingLevel={3} priority />}
+		{
+			rest.length > 0 && (
+				<div class="grid">
+					{rest.map((p, i) => (
+						<PostCard post={p.post} category={p.category} variant="card" tilt={tilts[i % tilts.length]} />
+					))}
+				</div>
+			)
+		}
+		<a href="/writing" class="chip" style="align-self: center; padding: 0 26px;">Browse all writing</a>
+	</section>
+
+	<!-- Podcast & companies -->
+	<section class="wrap section stack" style="--stack-gap: 40px;">
+		<div class="stack" style="--stack-gap: 8px;">
+			<p class="hand" style="font-size: 28px;">things I make &amp; run</p>
+			<h2 class="h-lg">The Podcast &amp; the Companies</h2>
+		</div>
+		<a href={PODCAST_URL} class="podcast-banner">
+			<span class="record" aria-hidden="true"><span>TTY</span></span>
+			<span class="stack" style="flex: 999 1 380px; min-width: 0; --stack-gap: 12px;">
+				<span class="hand" style="font-size: 28px; color: var(--gold);">on the mic</span>
+				<strong style="font-family: var(--font-display); font-size: clamp(36px, 5vw, 52px); line-height: 1; letter-spacing: -0.02em;">Tech Talk, Y’all</strong>
+				<span style="font-size: 19px; color: var(--on-ink-soft);">My podcast, co-hosted with Sanjay Park.</span>
+			</span>
+			<span class="btn btn--gold" style="flex: 0 0 auto;">Listen to the show →</span>
+		</a>
+		<div class="stack" style="--stack-gap: 16px;">
+			<h3 class="hand" style="font-size: 28px; font-weight: 500;">behind the desk</h3>
+			<div class="grid" style="--min: 240px; --grid-gap: 20px;">
+				<a href="https://48in48.org" class="card tilt-l company"><span class="label">Executive Director</span><strong>48in48</strong><span>1,700+ nonprofit websites built over 11 years.</span></a>
+				<a href={EDGEWISE_URL} class="card tilt-r company"><span class="label">Podcast production</span><strong>Edgewise Media</strong><span>Create marketing content fast through podcasts.</span></a>
+				<a href={TOGETHER_LETTERS_URL} class="card tilt-l company"><span class="label">Stay connected</span><strong>Together Letters</strong><span>Stay connected with the people important to you, outside of social media.</span></a>
+				<a href={ENABLE_GOOD_URL} class="card card--gold tilt-r company"><span class="label" style="color: var(--ink);">My consulting</span><strong>Enable Good</strong><span>Marketing and technology consulting for nonprofits.</span></a>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA band -->
+	<section class="band-ink">
+		<div class="wrap section split">
+			<div class="grow stack" style="--stack-gap: 22px;">
+				<p class="hand">is it the message or the tools?</p>
+				<h2 class="h-xl" style="font-size: clamp(40px, 5.5vw, 64px);">Either way, I can help fix it.</h2>
+				<p class="lead">Bring me in as your Fractional CMO, your Technology Lead, or both. For nonprofits and growing businesses.</p>
+				<div class="btn-row">
+					<a href="/work-with-me#contact" class="btn btn--gold">Let’s build something awesome</a>
+					<a href="/work-with-me" class="btn btn--ghost">See how I work</a>
+				</div>
+			</div>
+			<figure class="side stack" style="margin: 0; padding: 32px; border: 1.5px dashed rgba(244,237,225,.45); border-radius: 16px; --stack-gap: 14px;">
+				<span class="hand" style="font-size: 26px;">my superpower</span>
+				<blockquote class="italic-serif" style="margin: 0; font-size: 32px; line-height: 1.25;">“I make complex ideas and messages easy to understand.”</blockquote>
+			</figure>
+		</div>
+	</section>
+
+	<!-- Newsletter -->
+	<section class="wrap" style="padding-block: 80px;">
+		<div class="split" style="gap: 40px; align-items: flex-end;">
+			<div class="grow stack" style="--stack-gap: 12px; flex-basis: 420px;">
+				<h2 class="h-md" style="font-size: 44px;">One email a week.<br />Practical, short, no hype.</h2>
+				<p class="muted">Marketing, tech, and leadership from a dad of five and student of stoicism.</p>
+			</div>
+			<div class="side" style="flex-basis: 380px;">
+				<SubscribeForm id="footer-email" label="Email address" button="Subscribe" variant="rust" />
+			</div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.hat-list {
+		list-style: none;
+		margin: 0;
+		padding: 18px 0 0;
+		border-top: 1.5px dashed currentColor;
+		border-top-color: color-mix(in srgb, currentColor 35%, transparent);
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		font-size: 17px;
+		line-height: 1.5;
+	}
+	.podcast-banner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 32px 48px;
+		padding: 40px;
+		background: var(--ink);
+		border-radius: 20px;
+		color: var(--on-ink);
+		text-decoration: none;
+		box-shadow: 8px 8px 0 var(--gold);
+	}
+	.podcast-banner:hover {
+		color: var(--on-ink);
+	}
+	.record {
+		flex: 0 0 auto;
+		width: 168px;
+		height: 168px;
+		border-radius: 50%;
+		background: repeating-radial-gradient(circle, #2b383d 0 3px, #1a2326 3px 6px);
+		border: 3px solid var(--on-ink);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.record span {
+		width: 76px;
+		height: 76px;
+		border-radius: 50%;
+		background: var(--gold);
+		color: var(--ink);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 22px;
+	}
+	.company {
+		padding: 26px;
+		min-height: 180px;
+		gap: 10px;
+		border-radius: 14px;
+	}
+	.company strong {
+		font-family: var(--font-display);
+		font-size: 28px;
+		line-height: 1.1;
+	}
+	.company span:last-child {
+		color: var(--ink-soft);
+	}
+	.card--gold.company span:last-child {
+		color: var(--ink);
+	}
+	@media (max-width: 600px) {
+		.podcast-banner {
+			padding: 28px;
+		}
+		.record {
+			width: 120px;
+			height: 120px;
+		}
+	}
+</style>

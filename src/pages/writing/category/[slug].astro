@@ -1,0 +1,21 @@
+---
+import { getTaxonomyTermsWithCacheHint, decodeSlug } from "emdash";
+import Base from "../../../layouts/Base.astro";
+import WritingArchive from "../../../components/WritingArchive.astro";
+
+const slug = decodeSlug(Astro.params.slug);
+const terms = await getTaxonomyTermsWithCacheHint("category", { includeCounts: false });
+const term = slug ? terms.data.find((t) => t.slug === slug) : null;
+if (!term) return Astro.rewrite("/404");
+
+const cursor = Astro.url.searchParams.get("cursor") || undefined;
+---
+
+<Base title={`${term.label} — Writing`} description={term.description || `Essays on ${term.label.toLowerCase()} by Adam Walker.`}>
+	<header class="wrap stack" style="padding-block: 48px 40px; --stack-gap: 16px;">
+		<p class="hand hand--tilt">from the notebook</p>
+		<h1 class="display">{term.label}</h1>
+		{term.description && <p class="lead">{term.description}</p>}
+	</header>
+	<WritingArchive category={term.slug} cursor={cursor} />
+</Base>

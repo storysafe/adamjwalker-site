@@ -1,0 +1,34 @@
+---
+export const prerender = false;
+
+import { search } from "emdash";
+import Base from "../layouts/Base.astro";
+
+const query = Astro.url.searchParams.get("q")?.trim() || "";
+const { items: results } = query
+	? await search(query, { collections: ["posts"], limit: 30 })
+	: { items: [] };
+---
+
+<Base title={query ? `Search: ${query}` : "Search"} description="Search Adam Walker’s writing" robots="noindex">
+	<section class="wrap stack" style="max-width: 920px; padding-block: 48px 96px; --stack-gap: 28px;">
+		<p class="hand hand--tilt">dig through the notebook</p>
+		<h1 class="display" style="font-size: clamp(48px, 7vw, 80px);">Search</h1>
+		<form method="get" action="/search" role="search" style="display: flex; gap: 8px; max-width: 620px;">
+			<label for="sq" class="sr-only">Search writing</label>
+			<input id="sq" name="q" type="search" class="field" value={query} placeholder="Try “reading” or “AI”" />
+			<button type="submit" class="btn btn--ink" style="box-shadow: none;">Search</button>
+		</form>
+		{query && <p class="muted">{results.length} {results.length === 1 ? "result" : "results"} for “{query}”</p>}
+		<div>
+			{
+				results.map((r) => (
+					<article class="post-row" style="grid-template-columns: 1fr;">
+						<h2 class="row-title"><a href={`/writing/${r.slug ?? r.id}`}>{r.title ?? "Untitled"}</a></h2>
+						{r.snippet && <p class="muted" set:html={r.snippet} />}
+					</article>
+				))
+			}
+		</div>
+	</section>
+</Base>

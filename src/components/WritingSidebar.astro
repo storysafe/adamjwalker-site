@@ -1,0 +1,48 @@
+---
+import SubscribeForm from "./SubscribeForm.astro";
+
+interface Props {
+	terms: Array<{ slug: string; label: string; count?: number }>;
+}
+const { terms } = Astro.props;
+---
+
+<aside class="stack writing-aside" style="--stack-gap: 28px;">
+	<div class="card card--shadow tilt-r" style="padding: 28px; border-radius: 14px;">
+		<span class="hand" style="font-size: 26px;">get it weekly</span>
+		<h2 class="h-sm">One email a week. Practical, short, no hype.</h2>
+		<SubscribeForm id="aside-email" label="Email address" variant="rust" />
+	</div>
+	{
+		terms.length > 0 && (
+			<nav class="stack" style="--stack-gap: 4px;" aria-label="Topics">
+				<h2 class="label" style="font-family: var(--font-body); letter-spacing: .1em;">Topics</h2>
+				{terms.map((t) => (
+					<a href={`/writing/category/${t.slug}`} class="topic">
+						<span>{t.label}</span>
+						{typeof t.count === "number" && <span class="muted">{t.count}</span>}
+					</a>
+				))}
+			</nav>
+		)
+	}
+</aside>
+
+<style>
+	.writing-aside {
+		flex: 1 1 300px;
+	}
+	.topic {
+		display: flex;
+		justify-content: space-between;
+		min-height: 44px;
+		align-items: center;
+		border-bottom: 1.5px dashed var(--rule);
+		color: var(--ink);
+		text-decoration: none;
+		font-weight: 500;
+	}
+	.topic:hover {
+		color: var(--rust);
+	}
+</style>

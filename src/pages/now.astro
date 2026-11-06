@@ -1,0 +1,146 @@
+---
+import Base from "../layouts/Base.astro";
+import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
+
+/** Update this whenever the page changes. */
+const updated = "November 2026";
+---
+
+<Base title="Now" description="What Adam Walker is focused on right now: work, building, the podcast, reading, and home.">
+	<div class="wrap stack" style="max-width: 920px; padding-block: 48px 96px; --stack-gap: 40px;">
+		<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between;">
+			<div class="stack" style="--stack-gap: 12px;">
+				<p class="hand hand--tilt">what I’m up to these days</p>
+				<h1 class="display">Now</h1>
+			</div>
+			<div class="updated">
+				<span>Last updated</span>
+				<strong>{updated}</strong>
+			</div>
+		</div>
+		<p class="lead">A snapshot of where my time and attention are going right now. If it’s not on this page, I’m probably saying no to it.</p>
+
+		<div class="notebook">
+			<div class="tape" style="margin-left: -65px; width: 130px; background: rgba(224,169,59,.6); transform: rotate(-3deg);"></div>
+			<section>
+				<h2>At work</h2>
+				<ul>
+					<li>Wearing two hats: <strong>Fractional CMO</strong> and <strong>Technology Lead</strong> for growing businesses. <a href="/work-with-me">How I work →</a></li>
+					<li>Helping nonprofits with technology and marketing through <strong>Enable Good</strong>. AI without the hype.</li>
+					<li>Executive Director of <strong>48in48</strong>, which has built 1,700+ nonprofit websites over 11 years.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Building</h2>
+				<ul>
+					<li><strong>Edgewise Media</strong>: creating marketing content fast through podcasts.</li>
+					<li><strong>Together Letters</strong>: staying connected with the people important to you, outside of social media.</li>
+					<li>This website, rebuilt from WordPress onto EmDash and Astro.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>On the mic</h2>
+				<ul>
+					<li>Co-hosting <strong>Tech Talk, Y’all</strong> with Sanjay Park. <a href={PODCAST_URL}>Listen →</a></li>
+				</ul>
+			</section>
+			<section>
+				<h2>Reading</h2>
+				<ul>
+					<li>Still reading an hour a day. Current streak: <strong>[N] days</strong>.</li>
+					<li>On the nightstand: <em>[Book title]</em> by [Author].</li>
+				</ul>
+			</section>
+			<section>
+				<h2>At home</h2>
+				<ul>
+					<li>Husband, father of five, in Lilburn, Georgia.</li>
+					<li>Studying stoicism, one hard morning at a time.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Saying no to</h2>
+				<ul class="muted">
+					<li>[Something you’re deliberately not taking on right now]</li>
+				</ul>
+			</section>
+		</div>
+
+		<div class="band-ink" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 28px 32px; border-radius: 16px;">
+			<div class="stack" style="--stack-gap: 6px;">
+				<span class="hand" style="font-size: 26px;">want the weekly version?</span>
+				<strong style="font-family: var(--font-display); font-size: 26px;">One email a week. Practical, short, no hype.</strong>
+			</div>
+			<a href={SUBSTACK_URL} class="btn btn--gold">Subscribe on Substack</a>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.updated {
+		padding: 14px 18px;
+		border: 2.5px solid var(--rust);
+		border-radius: 8px;
+		color: var(--rust);
+		text-align: center;
+		transform: rotate(4deg);
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+	.updated span {
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+	.updated strong {
+		font-family: var(--font-display);
+		font-size: 22px;
+	}
+	.notebook {
+		position: relative;
+		background-color: var(--card);
+		background-image: repeating-linear-gradient(transparent 0 35px, rgba(168, 64, 31, 0.14) 35px 36px);
+		border: 2px solid var(--ink);
+		border-radius: 6px;
+		padding: 44px 48px 48px 88px;
+		box-shadow: 8px 8px 0 var(--ink);
+		display: flex;
+		flex-direction: column;
+		gap: 36px;
+	}
+	.notebook::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 56px;
+		width: 2px;
+		background: rgba(168, 64, 31, 0.45);
+	}
+	.notebook h2 {
+		font-family: var(--font-hand);
+		font-size: 34px;
+		line-height: 1;
+		color: var(--rust);
+		letter-spacing: 0;
+		margin-bottom: 10px;
+	}
+	.notebook ul {
+		margin: 0;
+		padding-left: 1.1em;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		font-size: 19px;
+	}
+	@media (max-width: 600px) {
+		.notebook {
+			padding: 36px 22px 32px 44px;
+		}
+		.notebook::before {
+			left: 28px;
+		}
+	}
+</style>
