@@ -1,39 +1,39 @@
 ---
-import { getEmDashCollection, getTaxonomyTermsWithCacheHint } from "emdash";
+import { getEmDashCollection } from "emdash";
 import PostCard from "./PostCard.astro";
 import WritingSidebar from "./WritingSidebar.astro";
-import { withCategories } from "../utils/posts";
+import { visiblePosts } from "../utils/posts";
+import { CATEGORY_GROUPS, VISIBLE_MEMBERS, getGroup } from "../categories";
 
 interface Props {
-	/** Category slug to filter by; omit for all posts. */
+	/** Display group slug to filter by; omit for all posts. */
 	category?: string;
 	cursor?: string;
 }
 const { category, cursor } = Astro.props;
+const group = category ? getGroup(category) : undefined;
 
-const terms = await getTaxonomyTermsWithCacheHint("category", { includeCounts: true });
 const { entries, cacheHint, nextCursor } = await getEmDashCollection("posts", {
-	...(category ? { where: { category } } : {}),
+	where: { category: group ? group.members : VISIBLE_MEMBERS },
 	orderBy: { published_at: "desc" },
 	limit: 15,
 	cursor,
 });
-if (Astro.cache?.enabled) {
-	Astro.cache.set(terms.cacheHint);
-	Astro.cache.set(cacheHint);
-}
-const posts = await withCategories(entries);
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const posts = await visiblePosts(entries);
 const showFeature = !cursor && !category && posts.length > 0;
 const [first, ...others] = posts;
 const list = showFeature ? others : posts;
 const base = category ? `/writing/category/${category}` : "/writing";
+const groups = CATEGORY_GROUPS.map((g) => ({ slug: g.slug, label: g.label }));
 ---
 
 <nav class="band-strip" aria-label="Categories">
 	<div class="wrap chip-row" style="padding-block: 16px;">
 		<a href="/writing" class="chip" aria-current={!category ? "page" : undefined}>All</a>
 		{
-			terms.data.map((t) => (
+			groups.map((t) => (
 				<a href={`/writing/category/${t.slug}`} class="chip" aria-current={category === t.slug ? "page" : undefined}>
 					{t.label}
 				</a>
@@ -45,7 +45,7 @@ const base = category ? `/writing/category/${category}` : "/writing";
 <section class="wrap" style="padding-block: 56px 96px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start;">
 	<div style="flex: 999 1 640px; min-width: 0;">
 		{showFeature && first && <PostCard post={first.post} category={first.category} variant="feature" headingLevel={2} priority />}
-		{posts.length === 0 && <p class="lead">{cursor ? "That’s the end of the archive." : "No essays here yet."}</p>}
+		{posts.length === 0 && !nextCursor && <p class="lead">{cursor ? "That’s the end of the archive." : "No essays here yet."}</p>}
 		<div>{list.map((p) => <PostCard post={p.post} category={category ? null : p.category} variant="row" headingLevel={2} />)}</div>
 		{
 			(cursor || nextCursor) && (
@@ -60,5 +60,5 @@ const base = category ? `/writing/category/${category}` : "/writing";
 			)
 		}
 	</div>
-	<WritingSidebar terms={terms.data.map((t) => ({ slug: t.slug, label: t.label, count: (t as { count?: number }).count }))} />
+	<WritingSidebar terms={groups} />
 </section>

@@ -1,21 +1,26 @@
 ---
-import { getTaxonomyTermsWithCacheHint, decodeSlug } from "emdash";
+import { decodeSlug } from "emdash";
 import Base from "../../../layouts/Base.astro";
 import WritingArchive from "../../../components/WritingArchive.astro";
+import { getGroup, groupForMember, HIDDEN_CATEGORIES } from "../../../categories";
 
-const slug = decodeSlug(Astro.params.slug);
-const terms = await getTaxonomyTermsWithCacheHint("category", { includeCounts: false });
-const term = slug ? terms.data.find((t) => t.slug === slug) : null;
-if (!term) return Astro.rewrite("/404");
+const slug = decodeSlug(Astro.params.slug) ?? "";
+const group = getGroup(slug);
+if (!group) {
+	// Old category slugs (e.g. /writing/category/productivity) go to their group.
+	const parent = groupForMember(slug);
+	if (parent) return Astro.redirect(`/writing/category/${parent.slug}`, 301);
+	if (HIDDEN_CATEGORIES.includes(slug)) return Astro.redirect("/writing", 302);
+	return Astro.rewrite("/404");
+}
 
 const cursor = Astro.url.searchParams.get("cursor") || undefined;
 ---
 
-<Base title={`${term.label} — Writing`} description={term.description || `Essays on ${term.label.toLowerCase()} by Adam Walker.`}>
+<Base title={`${group.label} — Writing`} description={`Essays on ${group.label.toLowerCase()} by Adam Walker.`}>
 	<header class="wrap stack" style="padding-block: 48px 40px; --stack-gap: 16px;">
 		<p class="hand hand--tilt">from the notebook</p>
-		<h1 class="display">{term.label}</h1>
-		{term.description && <p class="lead">{term.description}</p>}
+		<h1 class="display">{group.label}</h1>
 	</header>
-	<WritingArchive category={term.slug} cursor={cursor} />
+	<WritingArchive category={group.slug} cursor={cursor} />
 </Base>

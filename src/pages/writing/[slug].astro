@@ -7,6 +7,8 @@ import SubscribeForm from "../../components/SubscribeForm.astro";
 import { formatDate } from "../../utils/locale";
 import { getReadingTime, formatReadingTime } from "../../utils/reading-time";
 import { resolveBlogSiteIdentity } from "../../utils/site-identity";
+import { visiblePosts } from "../../utils/posts";
+import { groupForPost, isHidden, VISIBLE_MEMBERS } from "../../categories";
 
 const slug = decodeSlug(Astro.params.slug);
 if (!slug) return Astro.rewrite("/404");
@@ -34,16 +36,20 @@ const seo = getSeoMeta(post, {
 	defaultOgImage: imageUrl(post.data.featured_image),
 });
 
-const category = post.data.terms?.category?.[0] ?? null;
+const postSlugs = (post.data.terms?.category ?? []).map((t: { slug: string }) => t.slug);
+const hidden = isHidden(postSlugs);
+const category = hidden ? null : groupForPost(postSlugs);
 const publishedAt = post.data.publishedAt ?? null;
 const readingTime = formatReadingTime(getReadingTime(post.data.content));
 
+// Related: newest visible posts in the same group (or overall).
 const { entries: recent, cacheHint: recentHint } = await getEmDashCollection("posts", {
+	where: { category: category ? category.members : VISIBLE_MEMBERS },
 	orderBy: { published_at: "desc" },
-	limit: 4,
+	limit: 8,
 });
 if (Astro.cache?.enabled) Astro.cache.set(recentHint);
-const related = recent.filter((p) => p.id !== post.id).slice(0, 3);
+const related = (await visiblePosts(recent)).map((p) => p.post).filter((p) => p.id !== post.id).slice(0, 3);
 ---
 
 <Base

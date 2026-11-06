@@ -1,21 +1,20 @@
 ---
-import { getEmDashCollection, getTaxonomyTermsWithCacheHint } from "emdash";
+import { getEmDashCollection } from "emdash";
 import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
 import SubscribeForm from "../components/SubscribeForm.astro";
-import { withCategories } from "../utils/posts";
+import { visiblePosts } from "../utils/posts";
+import { CATEGORY_GROUPS, VISIBLE_MEMBERS } from "../categories";
 import { PODCAST_URL, ENABLE_GOOD_URL, TOGETHER_LETTERS_URL, EDGEWISE_URL } from "../site.config";
 
 const { entries, cacheHint } = await getEmDashCollection("posts", {
+	where: { category: VISIBLE_MEMBERS },
 	orderBy: { published_at: "desc" },
-	limit: 7,
+	limit: 12,
 });
-const terms = await getTaxonomyTermsWithCacheHint("category", { includeCounts: false });
-if (Astro.cache?.enabled) {
-	Astro.cache.set(cacheHint);
-	Astro.cache.set(terms.cacheHint);
-}
-const posts = await withCategories(entries);
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+const terms = { data: CATEGORY_GROUPS };
+const posts = (await visiblePosts(entries)).slice(0, 7);
 const [featured, ...rest] = posts;
 const tilts = [-0.6, 0.5, -0.4, 0.4, -0.5, 0.6];
 ---

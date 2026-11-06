@@ -1,13 +1,21 @@
 ---
 export const prerender = false;
 
-import { search } from "emdash";
+import { search, getTermsForEntries } from "emdash";
+import { isHidden } from "../categories";
 import Base from "../layouts/Base.astro";
 
 const query = Astro.url.searchParams.get("q")?.trim() || "";
-const { items: results } = query
-	? await search(query, { collections: ["posts"], limit: 30 })
+const { items: found } = query
+	? await search(query, { collections: ["posts"], limit: 40 })
 	: { items: [] };
+// Leave out posts in hidden categories.
+const termsById = found.length
+	? await getTermsForEntries("posts", found.map((r) => r.id), "category")
+	: new Map();
+const results = found
+	.filter((r) => !isHidden((termsById.get(r.id) ?? []).map((t: { slug: string }) => t.slug)))
+	.slice(0, 30);
 ---
 
 <Base title={query ? `Search: ${query}` : "Search"} description="Search Adam Walker’s writing" robots="noindex">
