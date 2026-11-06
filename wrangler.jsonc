@@ -10,6 +10,7 @@
 			"database_name": "adamjwalker-site",
 		},
 	],
+	"kv_namespaces": [{ "binding": "SESSION", "id": "2fc0e700724f49bab44ca5a081140f61" }],
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
