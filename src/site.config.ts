@@ -16,7 +16,7 @@ export const SUBSTACK_URL = `https://${SUBSTACK_SUBDOMAIN}.substack.com`;
  * address in Email Routing, and CONTACT_FROM must be on the adamjwalker.com zone.
  */
 export const CONTACT_ENDPOINT = "/api/contact";
-export const CONTACT_TO = "adam@storysafe.co";
+export const CONTACT_TO = "adam@adamjwalker.com";
 export const CONTACT_FROM = "forms@adamjwalker.com";
 
 export const NAV = [
