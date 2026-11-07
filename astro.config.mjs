@@ -38,6 +38,8 @@ export default defineConfig({
 			database: d1({ binding: "DB", session: "auto", coalesce: true }),
 			storage: r2({ binding: "MEDIA" }),
 			plugins: [cloudflareEmail],
+			// Public address used for sign-in links and passkeys.
+			siteUrl: "https://adamjwalker.com",
 		}),
 	],
 	fonts: [
