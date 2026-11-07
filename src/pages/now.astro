@@ -4,6 +4,16 @@ import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
 
 /** Update this whenever the page changes. */
 const updated = "November 2026";
+
+/**
+ * Reading streak counts up by itself: 1,321 days on Nov 7, 2026,
+ * plus one for every day since (Eastern time). If the streak ever
+ * resets, change these two values.
+ */
+const STREAK_ON = { date: "2026-11-07", days: 1321 };
+const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
+const daysSince = Math.round((Date.parse(todayET) - Date.parse(STREAK_ON.date)) / 86_400_000);
+const streak = (STREAK_ON.days + Math.max(0, daysSince)).toLocaleString("en-US");
 ---
 
 <Base title="Now" description="What Adam Walker is focused on right now: work, building, the podcast, reading, and home.">
@@ -47,7 +57,7 @@ const updated = "November 2026";
 			<section>
 				<h2>Reading</h2>
 				<ul>
-					<li>Still reading an hour a day. Current streak: <strong>1,321 days</strong>.</li>
+					<li>Still reading an hour a day. Current streak: <strong>{streak} days</strong>.</li>
 					<li>On the nightstand: <em>Theo of Golden</em>.</li>
 				</ul>
 			</section>
