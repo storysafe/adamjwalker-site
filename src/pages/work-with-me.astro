@@ -1,9 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
+import { PortableText } from "emdash/ui";
 import { CONTACT_ENDPOINT } from "../site.config";
+import { getPageCopy } from "../page-copy";
 
 const sent = Astro.url.searchParams.get("sent") === "1";
 const failed = Astro.url.searchParams.get("error") === "1";
+const { v, e } = await getPageCopy(Astro, "work_page");
 const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", "Not sure yet"];
 ---
 
@@ -12,24 +15,24 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 	<section class="wrap" style="padding-block: 56px 80px;">
 		<div class="split" style="align-items: flex-end;">
 			<div class="grow stack" style="--stack-gap: 24px; flex-basis: 600px;">
-				<p class="hand hand--tilt">is your marketing broken?</p>
+				<p class="hand hand--tilt" {...e("kicker")}>{v("kicker")}</p>
 				<h1 class="display" style="font-size: clamp(52px, 7vw, 84px); line-height: 1;">
 					Fractional CMO.<br />Technology Lead.<br /><span class="squiggle">Or both.<svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16c40-10 90-12 140-6s100 4 152-6" fill="none" stroke="#E0A93B" stroke-width="7" stroke-linecap="round"></path></svg></span>
 				</h1>
-				<p class="lead" style="font-size: 21px;">Most teams need someone to lead the message, someone to lead the tools, or both. I’ve founded two marketing agencies (sold one, still growing the other), served as a nonprofit CMO, and led 48in48 as it built 1,700+ nonprofit websites.</p>
+				<p class="lead" style="font-size: 21px;" {...e("lead")}>{v("lead")}</p>
 				<div class="btn-row">
-					<a href="#contact" class="btn btn--ink">Let’s work together</a>
-					<a href="#services" class="btn btn--ghost">See how I help</a>
+					<a href="#contact" class="btn btn--ink" {...e("button")}>{v("button")}</a>
+					<a href="#services" class="btn btn--ghost" {...e("button_2")}>{v("button_2")}</a>
 				</div>
 			</div>
 			<div class="side stack" style="--stack-gap: 14px;">
 				<div class="card card--ink" style="transform: rotate(1.5deg); padding: 24px 26px; gap: 4px; border-radius: 14px;">
-					<strong style="font-family: var(--font-display); font-size: 52px; line-height: 1; color: var(--gold);">1,700+</strong>
-					<span>nonprofit websites built through 48in48 over 11 years</span>
+					<strong style="font-family: var(--font-display); font-size: 52px; line-height: 1; color: var(--gold);" {...e("stat_1_number")}>{v("stat_1_number")}</strong>
+					<span {...e("stat_1_label")}>{v("stat_1_label")}</span>
 				</div>
 				<div class="card" style="transform: rotate(-1deg); padding: 24px 26px; gap: 4px; border-radius: 14px;">
-					<strong style="font-family: var(--font-display); font-size: 52px; line-height: 1; color: var(--rust);">2</strong>
-					<span style="color: var(--ink-soft);">marketing agencies founded, one sold</span>
+					<strong style="font-family: var(--font-display); font-size: 52px; line-height: 1; color: var(--rust);" {...e("stat_2_number")}>{v("stat_2_number")}</strong>
+					<span style="color: var(--ink-soft);" {...e("stat_2_label")}>{v("stat_2_label")}</span>
 				</div>
 			</div>
 		</div>
@@ -38,47 +41,40 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 	<!-- Superpower -->
 	<section class="band-strip">
 		<div class="wrap stack" style="max-width: 1000px; padding-block: 72px; text-align: center; align-items: center; --stack-gap: 16px;">
-			<p class="hand">my superpower</p>
-			<p class="italic-serif" style="font-size: clamp(30px, 4vw, 48px); line-height: 1.2;">“I make complex ideas and messages easy to understand.”</p>
+			<p class="hand" {...e("superpower_kicker")}>{v("superpower_kicker")}</p>
+			<p class="italic-serif" style="font-size: clamp(30px, 4vw, 48px); line-height: 1.2;" {...e("superpower_quote")}>{v("superpower_quote")}</p>
 		</div>
 	</section>
 
 	<!-- For businesses -->
 	<section id="services" class="wrap section stack" style="--stack-gap: 40px;">
 		<div class="stack" style="--stack-gap: 8px;">
-			<p class="hand" style="font-size: 28px;">for businesses</p>
-			<h2 class="h-lg">Two ways to work together</h2>
+			<p class="hand" style="font-size: 28px;" {...e("services_kicker")}>{v("services_kicker")}</p>
+			<h2 class="h-lg" {...e("services_heading")}>{v("services_heading")}</h2>
 		</div>
-		<p class="lead" style="margin-top: -16px; max-width: 720px;">For growing businesses, the help usually comes down to one of two seats at the leadership table: someone to lead your marketing, or someone to lead your technology.</p>
+		<p class="lead" style="margin-top: -16px; max-width: 720px;" {...e("services_lead")}>{v("services_lead")}</p>
 		<div class="grid" style="--min: 320px;">
 			<article id="marketing" class="card offer" style="box-shadow: 8px 8px 0 var(--rust);">
-				<p class="hand" style="font-size: 28px;">the marketing hat</p>
-				<h3 class="h-md" style="font-size: 44px;">Fractional CMO</h3>
-				<p class="italic-serif" style="font-size: 23px; line-height: 1.35; color: var(--ink-soft);">Marketing leadership, without hiring a full-time executive.</p>
-				<p style="color: var(--ink-soft);">A three-month (or longer) engagement where I lead your marketing team to build and execute a plan.</p>
-				<ul class="offer-list">
-					<li><strong>Right for you if</strong> your marketing feels broken, or no one owns it</li>
-					<li><strong>Engagement</strong> three months or longer</li>
-				</ul>
-				<a href="#contact" class="btn btn--ink push" style="align-self: flex-start; box-shadow: none;">Talk about marketing →</a>
+				<p class="hand" style="font-size: 28px;" {...e("cmo_kicker")}>{v("cmo_kicker")}</p>
+				<h3 class="h-md" style="font-size: 44px;" {...e("cmo_title")}>{v("cmo_title")}</h3>
+				<p class="italic-serif" style="font-size: 23px; line-height: 1.35; color: var(--ink-soft);" {...e("cmo_tagline")}>{v("cmo_tagline")}</p>
+				<p style="color: var(--ink-soft);" {...e("cmo_text")}>{v("cmo_text")}</p>
+				<div class="offer-list" {...e("cmo_list")}><PortableText value={v("cmo_list")} /></div>
+				<a href="#contact" class="btn btn--ink push" style="align-self: flex-start; box-shadow: none;" {...e("cmo_button")}>{v("cmo_button")}</a>
 			</article>
 			<article id="technology" class="card card--gold offer" style="box-shadow: 8px 8px 0 var(--ink);">
-				<p class="hand" style="font-size: 28px; color: var(--ink);">the technology hat</p>
-				<h3 class="h-md" style="font-size: 44px;">Technology Lead</h3>
-				<p class="italic-serif" style="font-size: 23px; line-height: 1.35;">A technology plan, and someone to lead it.</p>
-				<p>What to buy, what to build, and what to stop paying for, plus putting AI to work without the hype.</p>
-				<ul class="offer-list">
-					<li><strong>Tech strategy &amp; roadmap</strong></li>
-					<li><strong>AI adoption &amp; training</strong></li>
-					<li><strong>Websites, systems &amp; tools</strong></li>
-				</ul>
-				<a href="#contact" class="btn btn--ink push" style="align-self: flex-start; box-shadow: none;">Talk about technology →</a>
+				<p class="hand" style="font-size: 28px; color: var(--ink);" {...e("tech_kicker")}>{v("tech_kicker")}</p>
+				<h3 class="h-md" style="font-size: 44px;" {...e("tech_title")}>{v("tech_title")}</h3>
+				<p class="italic-serif" style="font-size: 23px; line-height: 1.35;" {...e("tech_tagline")}>{v("tech_tagline")}</p>
+				<p {...e("tech_text")}>{v("tech_text")}</p>
+				<div class="offer-list" {...e("tech_list")}><PortableText value={v("tech_list")} /></div>
+				<a href="#contact" class="btn btn--ink push" style="align-self: flex-start; box-shadow: none;" {...e("tech_button")}>{v("tech_button")}</a>
 			</article>
 		</div>
 		<div class="chip-row" style="justify-content: center; text-align: center; gap: 12px 20px; padding: 22px 28px; border: 2px dashed var(--ink); border-radius: 14px;">
-			<span class="hand">need both?</span>
-			<span style="font-size: 18px;">Message and tools usually break together. I can wear both hats.</span>
-			<a href="#contact" class="more">Let’s talk →</a>
+			<span class="hand" {...e("both_kicker")}>{v("both_kicker")}</span>
+			<span style="font-size: 18px;" {...e("both_text")}>{v("both_text")}</span>
+			<a href="#contact" class="more" {...e("both_link")}>{v("both_link")}</a>
 		</div>
 	</section>
 
@@ -87,32 +83,32 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 		<div class="wrap section stack" style="--stack-gap: 44px;">
 			<div style="display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: flex-end; justify-content: space-between;">
 				<div class="stack" style="flex: 999 1 560px; min-width: 0; --stack-gap: 14px;">
-					<p class="hand hand--tilt" style="font-size: 32px;">for nonprofits</p>
-					<h2 class="h-xl">AI without the hype.</h2>
-					<p class="lead">Practical technology your staff and volunteers will actually use. Built on 11 years and 1,700+ nonprofit websites with 48in48. My nonprofit work runs through <strong>Enable Good</strong>.</p>
+					<p class="hand hand--tilt" style="font-size: 32px;" {...e("np_kicker")}>{v("np_kicker")}</p>
+					<h2 class="h-xl" {...e("np_heading")}>{v("np_heading")}</h2>
+					<p class="lead"><span {...e("np_lead")}>{v("np_lead")}</span> <span {...e("np_brand_line")}>{v("np_brand_line")}</span> <strong {...e("np_brand")}>{v("np_brand")}</strong>.</p>
 				</div>
-				<a href="#contact" class="btn btn--ink" style="box-shadow: 4px 4px 0 var(--card);">Talk nonprofit tech</a>
+				<a href="#contact" class="btn btn--ink" style="box-shadow: 4px 4px 0 var(--card);" {...e("np_button")}>{v("np_button")}</a>
 			</div>
 			<div class="grid" style="--min: 250px; --grid-gap: 24px;">
 				<article class="card np tilt-l">
 					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8401F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"></path><path d="M5 20V10l4-3 4 3v10"></path><path d="M13 20v-6l4-3 2 1.5V20"></path><path d="M9 13v2"></path></svg>
-					<h3>Tech strategy &amp; roadmap</h3>
-					<p>What to buy, what to build, and what to stop paying for. A clear plan sized to your team and budget.</p>
+					<h3 {...e("np_1_title")}>{v("np_1_title")}</h3>
+					<p {...e("np_1_text")}>{v("np_1_text")}</p>
 				</article>
 				<article class="card np tilt-r">
 					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8401F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"></path><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"></path></svg>
-					<h3>AI adoption &amp; training</h3>
-					<p>Hands-on training that shows your staff and volunteers where AI saves real time, and where it doesn’t.</p>
+					<h3 {...e("np_2_title")}>{v("np_2_title")}</h3>
+					<p {...e("np_2_text")}>{v("np_2_text")}</p>
 				</article>
 				<article class="card np tilt-l">
 					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8401F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M3 8h18"></path><path d="M8 21h8"></path></svg>
-					<h3>Websites &amp; digital</h3>
-					<p>Site rebuilds and re-platforms, plus the digital tools that sit around them.</p>
+					<h3 {...e("np_3_title")}>{v("np_3_title")}</h3>
+					<p {...e("np_3_text")}>{v("np_3_text")}</p>
 				</article>
 				<article class="card np tilt-r">
 					<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#A8401F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><circle cx="12" cy="18" r="2.5"></circle><path d="M8 7.5l2.8 8.3"></path><path d="M16 7.5l-2.8 8.3"></path><path d="M8.5 6h7"></path></svg>
-					<h3>Systems &amp; tools</h3>
-					<p>Choosing and setting up your CRM, donor database, project tools, and automations so the work stops living in inboxes.</p>
+					<h3 {...e("np_4_title")}>{v("np_4_title")}</h3>
+					<p {...e("np_4_text")}>{v("np_4_text")}</p>
 				</article>
 			</div>
 		</div>
@@ -122,9 +118,9 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 	<section id="contact" class="band-ink">
 		<div class="wrap section" style="display: flex; flex-wrap: wrap; gap: 56px;">
 			<div class="stack" style="flex: 1 1 380px; --stack-gap: 18px;">
-				<p class="hand">let’s talk</p>
-				<h2 class="h-lg" style="line-height: 1.05;">Let’s work together &amp; build something awesome.</h2>
-				<p class="lead">Tell me what feels broken. I’ll read every note myself.</p>
+				<p class="hand" {...e("contact_kicker")}>{v("contact_kicker")}</p>
+				<h2 class="h-lg" style="line-height: 1.05;" {...e("contact_heading")}>{v("contact_heading")}</h2>
+				<p class="lead" {...e("contact_lead")}>{v("contact_lead")}</p>
 			</div>
 			<form method="post" action={CONTACT_ENDPOINT} class="contact-form">
 				<input type="hidden" name="form" value="work-with-me" />
@@ -148,7 +144,7 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 				</fieldset>
 				<label class="field-label full">What’s broken?<textarea class="field" name="message" rows="5" required></textarea></label>
 				<div class="full" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
-					<span class="hand" style="font-size: 24px; color: var(--rust);">thanks, I’m looking forward to connecting with you</span>
+					<span class="hand" style="font-size: 24px; color: var(--rust);" {...e("contact_signoff")}>{v("contact_signoff")}</span>
 					<button type="submit" class="btn btn--rust" style="min-height: 56px;">Send it</button>
 				</div>
 			</form>
@@ -162,7 +158,7 @@ const hats = ["Fractional CMO", "Technology Lead", "Both", "I’m a nonprofit", 
 		gap: 18px;
 		border-radius: 18px;
 	}
-	.offer-list {
+	.offer-list :global(ul) {
 		list-style: none;
 		margin: 0;
 		padding: 18px 0 0;

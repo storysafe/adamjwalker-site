@@ -1,9 +1,10 @@
 ---
 import Base from "../layouts/Base.astro";
-import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
+import { PortableText } from "emdash/ui";
+import { SUBSTACK_URL } from "../site.config";
+import { getPageCopy } from "../page-copy";
 
-/** Update this whenever the page changes. */
-const updated = "November 2026";
+const { v, e } = await getPageCopy(Astro, "now_page");
 
 /**
  * Reading streak counts up by itself: 1,323 days on Nov 7, 2026,
@@ -20,76 +21,60 @@ const streak = (STREAK_ON.days + Math.max(0, daysSince)).toLocaleString("en-US")
 	<div class="wrap stack" style="max-width: 920px; padding-block: 48px 96px; --stack-gap: 40px;">
 		<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between;">
 			<div class="stack" style="--stack-gap: 12px;">
-				<p class="hand hand--tilt">what I’m up to these days</p>
-				<h1 class="display">Now</h1>
+				<p class="hand hand--tilt" {...e("kicker")}>{v("kicker")}</p>
+				<h1 class="display" {...e("heading")}>{v("heading")}</h1>
 			</div>
 			<div class="updated">
 				<span>Last updated</span>
-				<strong>{updated}</strong>
+				<strong {...e("updated")}>{v("updated")}</strong>
 			</div>
 		</div>
-		<p class="lead">A snapshot of where my time and attention are going right now. If it’s not on this page, I’m probably saying no to it.</p>
+		<p class="lead" {...e("lead")}>{v("lead")}</p>
 
 		<div class="notebook">
 			<div class="tape" style="margin-left: -65px; width: 130px; background: rgba(224,169,59,.6); transform: rotate(-3deg);"></div>
 			<section>
-				<h2>At work</h2>
-				<ul>
-					<li>Wearing two hats: <strong>Fractional CMO</strong> and <strong>Technology Lead</strong> for growing businesses. <a href="/work-with-me">How I work →</a></li>
-					<li>Helping nonprofits with technology and marketing through <strong>Enable Good</strong>. AI without the hype.</li>
-					<li>Executive Director of <strong>48in48</strong>, which has built 1,700+ nonprofit websites over 11 years.</li>
-				</ul>
+				<h2 {...e("work_heading")}>{v("work_heading")}</h2>
+				<div {...e("work_list")}><PortableText value={v("work_list")} /></div>
 			</section>
 			<section>
-				<h2>Building</h2>
-				<ul>
-					<li><strong>Edgewise Media</strong>: creating marketing content fast through podcasts.</li>
-					<li><strong>Together Letters</strong>: staying connected with the people important to you, outside of social media.</li>
-					<li>This website, rebuilt from WordPress onto EmDash and Astro.</li>
-				</ul>
+				<h2 {...e("building_heading")}>{v("building_heading")}</h2>
+				<div {...e("building_list")}><PortableText value={v("building_list")} /></div>
 			</section>
 			<section>
-				<h2>On the mic</h2>
-				<ul>
-					<li>Co-hosting <strong>Tech Talk, Y’all</strong> with Sanjay Parekh. <a href={PODCAST_URL}>Listen →</a></li>
-				</ul>
+				<h2 {...e("mic_heading")}>{v("mic_heading")}</h2>
+				<div {...e("mic_list")}><PortableText value={v("mic_list")} /></div>
 			</section>
 			<section>
-				<h2>Reading</h2>
+				<h2 {...e("reading_heading")}>{v("reading_heading")}</h2>
 				<ul>
-					<li>Still reading an hour a day. Current streak: <strong>{streak} days</strong>.</li>
-					<li>On the nightstand: <em>Theo of Golden</em>.</li>
+					<li><span {...e("streak_text")}>{v("streak_text")}</span> <strong>{streak} days</strong>.</li>
+					<li><span {...e("book_label")}>{v("book_label")}</span> <em {...e("book_title")}>{v("book_title")}</em>.</li>
 				</ul>
 			</section>
 			<section class="home-row">
 				<div>
-					<h2>At home</h2>
-					<ul>
-						<li>Husband, father of five, in Lilburn, Georgia.</li>
-						<li>Studying stoicism, one hard morning at a time.</li>
-					</ul>
+					<h2 {...e("home_heading")}>{v("home_heading")}</h2>
+					<div {...e("home_list")}><PortableText value={v("home_list")} /></div>
 				</div>
 				<figure class="family">
 					<div class="tape" style="width: 90px; margin-left: -45px; transform: rotate(4deg);"></div>
 					<img src="/images/walker-family.webp" alt="The Walker family: Adam, his wife, and their five kids" width="1000" height="1333" loading="lazy" />
-					<figcaption>the whole crew</figcaption>
+					<figcaption {...e("photo_caption")}>{v("photo_caption")}</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h2>Saying no to</h2>
-				<ul>
-					<li>Time wasters.</li>
-					<li>Social media doom scrolling.</li>
-				</ul>
+				<h2 {...e("no_heading")}>{v("no_heading")}</h2>
+				<div {...e("no_list")}><PortableText value={v("no_list")} /></div>
 			</section>
 		</div>
 
 		<div class="band-ink" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 28px 32px; border-radius: 16px;">
 			<div class="stack" style="--stack-gap: 6px;">
-				<span class="hand" style="font-size: 26px;">want the weekly version?</span>
-				<strong style="font-family: var(--font-display); font-size: 26px;">One email a week. Practical, short, no hype.</strong>
+				<span class="hand" style="font-size: 26px;" {...e("cta_kicker")}>{v("cta_kicker")}</span>
+				<strong style="font-family: var(--font-display); font-size: 26px;" {...e("cta_text")}>{v("cta_text")}</strong>
 			</div>
-			<a href={SUBSTACK_URL} class="btn btn--gold">Subscribe on Substack</a>
+			<a href={SUBSTACK_URL} class="btn btn--gold" {...e("cta_button")}>{v("cta_button")}</a>
 		</div>
 	</div>
 </Base>
@@ -145,7 +130,7 @@ const streak = (STREAK_ON.days + Math.max(0, daysSince)).toLocaleString("en-US")
 		letter-spacing: 0;
 		margin-bottom: 10px;
 	}
-	.notebook ul {
+	.notebook :global(ul) {
 		margin: 0;
 		padding-left: 1.1em;
 		display: flex;

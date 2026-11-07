@@ -1,45 +1,37 @@
 ---
 import Base from "../layouts/Base.astro";
 import { CONTACT_ENDPOINT } from "../site.config";
+import { getPageCopy } from "../page-copy";
 
 const sent = Astro.url.searchParams.get("sent") === "1";
 const failed = Astro.url.searchParams.get("error") === "1";
 
-const talks = [
-	{ tag: "Marketing", title: "Best Practices Are Just Average Practices", desc: "Copying what everyone else does gets you average results. This talk shows how to spot the contrarian moves that actually fit your organization, and how to test them without betting the farm. For marketing teams, founders, and nonprofit leaders tired of playing it safe.", formats: "Keynote · Workshop", gold: false },
-	{ tag: "Technology", title: "AI Without the Hype", desc: "A plain-English look at where AI saves real time for small teams and where it’s just a shiny distraction. Attendees leave with a short list of tools and habits they can put to work Monday morning. For nonprofit staff, executives, and small business owners.", formats: "Keynote · Workshop", gold: true },
-	{ tag: "Leadership", title: "What 1,000 Days of Reading Taught Me About Leading", desc: "Lessons from reading an hour a day, every day, for more than three years: on focus, consistency, and becoming the kind of leader people want to follow. For leadership teams and anyone trying to build a habit that actually sticks.", formats: "Keynote", gold: false },
-];
-const formats = [
-	["Keynotes", "30–45 minutes"],
-	["Workshops", "90 minutes to a half day"],
-	["Panels & fireside chats", "30–60 minutes"],
-	["Podcast guest", "30–60 minutes, remote or in studio"],
-];
-const events = [
-	{ name: "WordCamp ATL", note: "Atlanta", dark: false, tilt: -0.8 },
-	{ name: "WordCamp London", note: "London", dark: false, tilt: 0.6 },
-	{ name: "WIT Career Expo", note: "Women in Technology", dark: false, tilt: 0.5 },
-	{ name: "48in48 Global", note: "Nonprofit tech event", dark: true, tilt: -0.6 },
-];
+const { v, e } = await getPageCopy(Astro, "speaking_page");
+type Talk = { tag?: string; title: string; description?: string; formats?: string; highlight?: boolean };
+type Format = { name: string; length?: string };
+type Event = { name: string; note?: string; highlight?: boolean };
+const talks = (v("talks") ?? []) as Talk[];
+const formats = (v("formats") ?? []) as Format[];
+const tilts = [-0.8, 0.6, 0.5, -0.6];
+const events = ((v("events") ?? []) as Event[]).map((ev, i) => ({ ...ev, tilt: tilts[i % tilts.length] }));
 ---
 
 <Base title="Speaking" description="Talks and workshops on marketing, technology, and leadership, minus the hype. Book Adam Walker for your event.">
 	<section class="wrap" style="padding-block: 48px 88px;">
 		<div class="split">
 			<div class="grow stack" style="--stack-gap: 24px;">
-				<p class="hand hand--tilt">on stage, fedora included</p>
-				<h1 class="display" style="font-size: clamp(56px, 7vw, 84px);">Speaking</h1>
-				<p class="lead" style="font-size: 21px;">Talks and workshops on marketing, technology, and leadership, minus the hype. I make complex ideas easy to understand, and I bring that to the room.</p>
+				<p class="hand hand--tilt" {...e("kicker")}>{v("kicker")}</p>
+				<h1 class="display" style="font-size: clamp(56px, 7vw, 84px);" {...e("heading")}>{v("heading")}</h1>
+				<p class="lead" style="font-size: 21px;" {...e("lead")}>{v("lead")}</p>
 				<div class="btn-row">
-					<a href="#book" class="btn btn--ink">Book Adam for your event</a>
+					<a href="#book" class="btn btn--ink" {...e("button")}>{v("button")}</a>
 				</div>
 			</div>
 			<div class="side" style="display: flex; justify-content: center; flex-basis: 380px;">
 				<figure class="polaroid" style="width: 440px; transform: rotate(-2deg); padding-bottom: 58px;">
 					<div class="tape" style="left: auto; right: 18%; transform: rotate(5deg);"></div>
 					<img src="/images/adam-headshot.webp" alt="Adam Walker at a conference, wearing a fedora and event lanyard" width="900" height="1200" style="display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 25%;" />
-					<figcaption style="font-size: 26px;">between sessions</figcaption>
+					<figcaption style="font-size: 26px;" {...e("photo_caption")}>{v("photo_caption")}</figcaption>
 				</figure>
 			</div>
 		</div>
@@ -48,16 +40,16 @@ const events = [
 	<section class="band-strip" style="border-bottom: 0;">
 		<div class="wrap section stack" style="--stack-gap: 40px; padding-block: 88px;">
 			<div class="stack" style="--stack-gap: 8px;">
-				<p class="hand" style="font-size: 28px;">what I talk about</p>
-				<h2 class="h-lg">Talks</h2>
+				<p class="hand" style="font-size: 28px;" {...e("talks_kicker")}>{v("talks_kicker")}</p>
+				<h2 class="h-lg" {...e("talks_heading")}>{v("talks_heading")}</h2>
 			</div>
-			<div class="grid" style="--grid-gap: 24px;">
+			<div class="grid" style="--grid-gap: 24px;" {...e("talks")}>
 				{
 					talks.map((t) => (
-						<article class:list={["card", "card--shadow", { "card--gold": t.gold }]}>
-							<span class="stamp" style={t.gold ? "border-color: var(--ink); color: var(--ink);" : undefined}>{t.tag}</span>
+						<article class:list={["card", "card--shadow", { "card--gold": t.highlight }]}>
+							<span class="stamp" style={t.highlight ? "border-color: var(--ink); color: var(--ink);" : undefined}>{t.tag}</span>
 							<h3 style="font-size: 30px; line-height: 1.1;">{t.title}</h3>
-							<p style={t.gold ? undefined : "color: var(--ink-soft);"}>{t.desc}</p>
+							<p style={t.highlight ? undefined : "color: var(--ink-soft);"}>{t.description}</p>
 							<span class="push" style="font-size: 14px; font-weight: 600;">{t.formats}</span>
 						</article>
 					))
@@ -68,19 +60,19 @@ const events = [
 
 	<section class="wrap section" style="display: flex; flex-wrap: wrap; gap: 56px; padding-block: 88px;">
 		<div class="stack" style="flex: 1 1 380px; --stack-gap: 18px;">
-			<h2 class="h-md">Ways I show up</h2>
-			<ul class="formats">
-				{formats.map(([name, length]) => <li><strong>{name}</strong><span class="muted">{length}</span></li>)}
+			<h2 class="h-md" {...e("formats_heading")}>{v("formats_heading")}</h2>
+			<ul class="formats" {...e("formats")}>
+				{formats.map((f) => <li><strong>{f.name}</strong><span class="muted">{f.length}</span></li>)}
 			</ul>
 		</div>
 		<div class="stack" style="flex: 1 1 480px; --stack-gap: 18px;">
-			<h2 class="h-md">Where I’ve spoken</h2>
-			<div class="grid" style="--min: 200px; --grid-gap: 16px;">
+			<h2 class="h-md" {...e("events_heading")}>{v("events_heading")}</h2>
+			<div class="grid" style="--min: 200px; --grid-gap: 16px;" {...e("events")}>
 				{
-					events.map((e) => (
-						<div class:list={["card", "event", { "card--ink": e.dark }]} style={`transform: rotate(${e.tilt}deg)`}>
-							<strong>{e.name}</strong>
-							<span style={e.dark ? "color: var(--gold);" : "color: var(--muted);"}>{e.note}</span>
+					events.map((ev) => (
+						<div class:list={["card", "event", { "card--ink": ev.highlight }]} style={`transform: rotate(${ev.tilt}deg)`}>
+							<strong>{ev.name}</strong>
+							<span style={ev.highlight ? "color: var(--gold);" : "color: var(--muted);"}>{ev.note}</span>
 						</div>
 					))
 				}
@@ -91,9 +83,9 @@ const events = [
 	<section id="book" class="band-ink">
 		<div class="wrap section" style="display: flex; flex-wrap: wrap; gap: 56px;">
 			<div class="stack" style="flex: 1 1 360px; --stack-gap: 18px;">
-				<p class="hand">bring me in</p>
-				<h2 class="h-lg" style="line-height: 1.05;">Book Adam for your event.</h2>
-				<p class="lead">Tell me about the room and what you want people to walk away with.</p>
+				<p class="hand" {...e("book_kicker")}>{v("book_kicker")}</p>
+				<h2 class="h-lg" style="line-height: 1.05;" {...e("book_heading")}>{v("book_heading")}</h2>
+				<p class="lead" {...e("book_lead")}>{v("book_lead")}</p>
 			</div>
 			<form method="post" action={CONTACT_ENDPOINT} class="book-form">
 				<input type="hidden" name="form" value="speaking" />

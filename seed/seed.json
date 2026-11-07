@@ -78,6 +78,826 @@
 					"searchable": true
 				}
 			]
+		},
+		{
+			"slug": "home_page",
+			"label": "Homepage",
+			"labelSingular": "Homepage",
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string"
+				},
+				{
+					"slug": "hero_kicker",
+					"label": "Hero: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "hero_tagline",
+					"label": "Hero: tagline",
+					"type": "string"
+				},
+				{
+					"slug": "hero_highlight",
+					"label": "Hero: highlighted words",
+					"type": "string"
+				},
+				{
+					"slug": "hats_intro",
+					"label": "Hero: two hats intro",
+					"type": "string"
+				},
+				{
+					"slug": "subscribe_note",
+					"label": "Hero: newsletter note",
+					"type": "string"
+				},
+				{
+					"slug": "photo_caption",
+					"label": "Hero: photo caption",
+					"type": "string"
+				},
+				{
+					"slug": "currently_1",
+					"label": "Currently strip: item 1",
+					"type": "string"
+				},
+				{
+					"slug": "currently_2",
+					"label": "Currently strip: item 2",
+					"type": "string"
+				},
+				{
+					"slug": "currently_3",
+					"label": "Currently strip: item 3",
+					"type": "string"
+				},
+				{
+					"slug": "hats_kicker",
+					"label": "Two hats: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "hats_heading",
+					"label": "Two hats: heading",
+					"type": "string"
+				},
+				{
+					"slug": "hats_lead",
+					"label": "Two hats: intro",
+					"type": "text"
+				},
+				{
+					"slug": "cmo_kicker",
+					"label": "Marketing card: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_title",
+					"label": "Marketing card: title",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_tagline",
+					"label": "Marketing card: tagline",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_list",
+					"label": "Marketing card: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "cmo_link",
+					"label": "Marketing card: link text",
+					"type": "string"
+				},
+				{
+					"slug": "tech_kicker",
+					"label": "Technology card: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "tech_title",
+					"label": "Technology card: title",
+					"type": "string"
+				},
+				{
+					"slug": "tech_tagline",
+					"label": "Technology card: tagline",
+					"type": "string"
+				},
+				{
+					"slug": "tech_list",
+					"label": "Technology card: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "tech_link",
+					"label": "Technology card: link text",
+					"type": "string"
+				},
+				{
+					"slug": "hats_footnote",
+					"label": "Two hats: footnote",
+					"type": "string"
+				},
+				{
+					"slug": "writing_kicker",
+					"label": "Writing: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "writing_heading",
+					"label": "Writing: heading",
+					"type": "string"
+				},
+				{
+					"slug": "writing_button",
+					"label": "Writing: button",
+					"type": "string"
+				},
+				{
+					"slug": "make_kicker",
+					"label": "Podcast & companies: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "make_heading",
+					"label": "Podcast & companies: heading",
+					"type": "string"
+				},
+				{
+					"slug": "cta_kicker",
+					"label": "Call to action: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "cta_heading",
+					"label": "Call to action: heading",
+					"type": "string"
+				},
+				{
+					"slug": "cta_lead",
+					"label": "Call to action: text",
+					"type": "text"
+				},
+				{
+					"slug": "cta_button",
+					"label": "Call to action: main button",
+					"type": "string"
+				},
+				{
+					"slug": "cta_button_2",
+					"label": "Call to action: second button",
+					"type": "string"
+				},
+				{
+					"slug": "superpower_kicker",
+					"label": "Superpower: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "superpower_quote",
+					"label": "Superpower: quote",
+					"type": "text"
+				},
+				{
+					"slug": "newsletter_line_1",
+					"label": "Newsletter: heading line 1",
+					"type": "string"
+				},
+				{
+					"slug": "newsletter_line_2",
+					"label": "Newsletter: heading line 2",
+					"type": "string"
+				},
+				{
+					"slug": "newsletter_note",
+					"label": "Newsletter: note",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"slug": "now_page",
+			"label": "Now page",
+			"labelSingular": "Now page",
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string"
+				},
+				{
+					"slug": "kicker",
+					"label": "Handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "heading",
+					"label": "Heading",
+					"type": "string"
+				},
+				{
+					"slug": "updated",
+					"label": "Last updated",
+					"type": "string"
+				},
+				{
+					"slug": "lead",
+					"label": "Intro",
+					"type": "text"
+				},
+				{
+					"slug": "work_heading",
+					"label": "At work: heading",
+					"type": "string"
+				},
+				{
+					"slug": "work_list",
+					"label": "At work: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "building_heading",
+					"label": "Building: heading",
+					"type": "string"
+				},
+				{
+					"slug": "building_list",
+					"label": "Building: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "mic_heading",
+					"label": "On the mic: heading",
+					"type": "string"
+				},
+				{
+					"slug": "mic_list",
+					"label": "On the mic: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "reading_heading",
+					"label": "Reading: heading",
+					"type": "string"
+				},
+				{
+					"slug": "streak_text",
+					"label": "Reading: streak line (the day count updates itself)",
+					"type": "string"
+				},
+				{
+					"slug": "book_label",
+					"label": "Reading: book label",
+					"type": "string"
+				},
+				{
+					"slug": "book_title",
+					"label": "Reading: current book",
+					"type": "string"
+				},
+				{
+					"slug": "home_heading",
+					"label": "At home: heading",
+					"type": "string"
+				},
+				{
+					"slug": "home_list",
+					"label": "At home: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "photo_caption",
+					"label": "At home: photo caption",
+					"type": "string"
+				},
+				{
+					"slug": "no_heading",
+					"label": "Saying no to: heading",
+					"type": "string"
+				},
+				{
+					"slug": "no_list",
+					"label": "Saying no to: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "cta_kicker",
+					"label": "Newsletter box: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "cta_text",
+					"label": "Newsletter box: text",
+					"type": "string"
+				},
+				{
+					"slug": "cta_button",
+					"label": "Newsletter box: button",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"slug": "speaking_page",
+			"label": "Speaking page",
+			"labelSingular": "Speaking page",
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string"
+				},
+				{
+					"slug": "kicker",
+					"label": "Handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "heading",
+					"label": "Heading",
+					"type": "string"
+				},
+				{
+					"slug": "lead",
+					"label": "Intro",
+					"type": "text"
+				},
+				{
+					"slug": "button",
+					"label": "Button",
+					"type": "string"
+				},
+				{
+					"slug": "photo_caption",
+					"label": "Photo caption",
+					"type": "string"
+				},
+				{
+					"slug": "talks_kicker",
+					"label": "Talks: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "talks_heading",
+					"label": "Talks: heading",
+					"type": "string"
+				},
+				{
+					"slug": "talks",
+					"label": "Talks",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "tag",
+								"label": "Topic tag",
+								"type": "string"
+							},
+							{
+								"slug": "title",
+								"label": "Title",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "description",
+								"label": "Description",
+								"type": "text"
+							},
+							{
+								"slug": "formats",
+								"label": "Formats",
+								"type": "string"
+							},
+							{
+								"slug": "highlight",
+								"label": "Gold card",
+								"type": "boolean"
+							}
+						]
+					}
+				},
+				{
+					"slug": "formats_heading",
+					"label": "Formats: heading",
+					"type": "string"
+				},
+				{
+					"slug": "formats",
+					"label": "Formats",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "name",
+								"label": "Format",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "length",
+								"label": "Length",
+								"type": "string"
+							}
+						]
+					}
+				},
+				{
+					"slug": "events_heading",
+					"label": "Events: heading",
+					"type": "string"
+				},
+				{
+					"slug": "events",
+					"label": "Events",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "name",
+								"label": "Event",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "note",
+								"label": "Note",
+								"type": "string"
+							},
+							{
+								"slug": "highlight",
+								"label": "Dark card",
+								"type": "boolean"
+							}
+						]
+					}
+				},
+				{
+					"slug": "book_kicker",
+					"label": "Booking: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "book_heading",
+					"label": "Booking: heading",
+					"type": "string"
+				},
+				{
+					"slug": "book_lead",
+					"label": "Booking: text",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"slug": "work_page",
+			"label": "Work with me page",
+			"labelSingular": "Work with me page",
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string"
+				},
+				{
+					"slug": "kicker",
+					"label": "Hero: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "lead",
+					"label": "Hero: intro",
+					"type": "text"
+				},
+				{
+					"slug": "button",
+					"label": "Hero: main button",
+					"type": "string"
+				},
+				{
+					"slug": "button_2",
+					"label": "Hero: second button",
+					"type": "string"
+				},
+				{
+					"slug": "stat_1_number",
+					"label": "Stat 1: number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_1_label",
+					"label": "Stat 1: label",
+					"type": "string"
+				},
+				{
+					"slug": "stat_2_number",
+					"label": "Stat 2: number",
+					"type": "string"
+				},
+				{
+					"slug": "stat_2_label",
+					"label": "Stat 2: label",
+					"type": "string"
+				},
+				{
+					"slug": "superpower_kicker",
+					"label": "Superpower: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "superpower_quote",
+					"label": "Superpower: quote",
+					"type": "text"
+				},
+				{
+					"slug": "services_kicker",
+					"label": "Businesses: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "services_heading",
+					"label": "Businesses: heading",
+					"type": "string"
+				},
+				{
+					"slug": "services_lead",
+					"label": "Businesses: intro",
+					"type": "text"
+				},
+				{
+					"slug": "cmo_kicker",
+					"label": "Marketing card: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_title",
+					"label": "Marketing card: title",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_tagline",
+					"label": "Marketing card: tagline",
+					"type": "string"
+				},
+				{
+					"slug": "cmo_text",
+					"label": "Marketing card: text",
+					"type": "text"
+				},
+				{
+					"slug": "cmo_list",
+					"label": "Marketing card: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "cmo_button",
+					"label": "Marketing card: button",
+					"type": "string"
+				},
+				{
+					"slug": "tech_kicker",
+					"label": "Technology card: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "tech_title",
+					"label": "Technology card: title",
+					"type": "string"
+				},
+				{
+					"slug": "tech_tagline",
+					"label": "Technology card: tagline",
+					"type": "string"
+				},
+				{
+					"slug": "tech_text",
+					"label": "Technology card: text",
+					"type": "text"
+				},
+				{
+					"slug": "tech_list",
+					"label": "Technology card: list",
+					"type": "portableText"
+				},
+				{
+					"slug": "tech_button",
+					"label": "Technology card: button",
+					"type": "string"
+				},
+				{
+					"slug": "both_kicker",
+					"label": "Need both: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "both_text",
+					"label": "Need both: text",
+					"type": "string"
+				},
+				{
+					"slug": "both_link",
+					"label": "Need both: link",
+					"type": "string"
+				},
+				{
+					"slug": "np_kicker",
+					"label": "Nonprofits: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "np_heading",
+					"label": "Nonprofits: heading",
+					"type": "string"
+				},
+				{
+					"slug": "np_lead",
+					"label": "Nonprofits: intro",
+					"type": "text"
+				},
+				{
+					"slug": "np_brand_line",
+					"label": "Nonprofits: brand line",
+					"type": "string"
+				},
+				{
+					"slug": "np_brand",
+					"label": "Nonprofits: brand name",
+					"type": "string"
+				},
+				{
+					"slug": "np_button",
+					"label": "Nonprofits: button",
+					"type": "string"
+				},
+				{
+					"slug": "np_1_title",
+					"label": "Nonprofit card 1: title",
+					"type": "string"
+				},
+				{
+					"slug": "np_1_text",
+					"label": "Nonprofit card 1: text",
+					"type": "text"
+				},
+				{
+					"slug": "np_2_title",
+					"label": "Nonprofit card 2: title",
+					"type": "string"
+				},
+				{
+					"slug": "np_2_text",
+					"label": "Nonprofit card 2: text",
+					"type": "text"
+				},
+				{
+					"slug": "np_3_title",
+					"label": "Nonprofit card 3: title",
+					"type": "string"
+				},
+				{
+					"slug": "np_3_text",
+					"label": "Nonprofit card 3: text",
+					"type": "text"
+				},
+				{
+					"slug": "np_4_title",
+					"label": "Nonprofit card 4: title",
+					"type": "string"
+				},
+				{
+					"slug": "np_4_text",
+					"label": "Nonprofit card 4: text",
+					"type": "text"
+				},
+				{
+					"slug": "contact_kicker",
+					"label": "Contact: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "contact_heading",
+					"label": "Contact: heading",
+					"type": "string"
+				},
+				{
+					"slug": "contact_lead",
+					"label": "Contact: intro",
+					"type": "text"
+				},
+				{
+					"slug": "contact_signoff",
+					"label": "Contact: handwritten sign-off",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"slug": "podcast_page",
+			"label": "Podcast & Companies page",
+			"labelSingular": "Podcast & Companies page",
+			"supports": [
+				"drafts",
+				"revisions"
+			],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string"
+				},
+				{
+					"slug": "kicker",
+					"label": "Handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "heading",
+					"label": "Heading",
+					"type": "string"
+				},
+				{
+					"slug": "show_kicker",
+					"label": "Podcast: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "show_title",
+					"label": "Podcast: name",
+					"type": "string"
+				},
+				{
+					"slug": "show_text",
+					"label": "Podcast: description",
+					"type": "string"
+				},
+				{
+					"slug": "show_button",
+					"label": "Podcast: button",
+					"type": "string"
+				},
+				{
+					"slug": "companies_kicker",
+					"label": "Companies: handwritten line",
+					"type": "string"
+				},
+				{
+					"slug": "companies",
+					"label": "Companies",
+					"type": "repeater",
+					"validation": {
+						"subFields": [
+							{
+								"slug": "role",
+								"label": "Label (small caps)",
+								"type": "string"
+							},
+							{
+								"slug": "name",
+								"label": "Name",
+								"type": "string",
+								"required": true
+							},
+							{
+								"slug": "description",
+								"label": "Description",
+								"type": "text"
+							},
+							{
+								"slug": "url",
+								"label": "Link",
+								"type": "url"
+							},
+							{
+								"slug": "highlight",
+								"label": "Gold card",
+								"type": "boolean"
+							}
+						]
+					}
+				}
+			]
 		}
 	],
 	"taxonomies": [
@@ -163,6 +983,819 @@
 	"sections": [],
 	"content": {
 		"pages": [],
-		"posts": []
+		"posts": [],
+		"home_page": [
+			{
+				"id": "home_page-main",
+				"slug": "main",
+				"status": "published",
+				"data": {
+					"title": "Homepage",
+					"hero_kicker": "marketing, tech & leadership, minus the hype",
+					"hero_tagline": "Husband. Father of five. Wearer of fedoras.",
+					"hero_highlight": "Helper of nonprofits.",
+					"hats_intro": "At work, I wear two hats:",
+					"subscribe_note": "Weekly marketing newsletter, delivered through Substack.",
+					"photo_caption": "the fedora stays on",
+					"currently_1": "Fractional CMO & Technology Lead",
+					"currently_2": "Executive Director, 48in48",
+					"currently_3": "Co-host, Tech Talk, Y’all",
+					"hats_kicker": "two hats, one fedora",
+					"hats_heading": "Marketing lead. Technology lead. Or both.",
+					"hats_lead": "I make complex ideas and messages easy to understand, whether the thing that’s stuck is your message or your tools.",
+					"cmo_kicker": "the marketing hat",
+					"cmo_title": "Fractional CMO",
+					"cmo_tagline": "Is your marketing broken? I can help fix it.",
+					"cmo_list": [
+						{
+							"_type": "block",
+							"_key": "cmolisb1y",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "cmoliss1w",
+									"text": "Fractional CMO",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "cmoliss1x",
+									"text": " — three months or longer, leading your team to build and execute a plan",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "cmolisb21",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "cmoliss1z",
+									"text": "Marketing leadership",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "cmoliss20",
+									"text": " — someone who owns the message, the plan, and the results",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cmo_link": "Hire the marketing lead →",
+					"tech_kicker": "the technology hat",
+					"tech_title": "Technology Lead",
+					"tech_tagline": "AI without the hype. Tech your team will actually use.",
+					"tech_list": [
+						{
+							"_type": "block",
+							"_key": "techlib24",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis22",
+									"text": "Tech strategy & roadmap",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "techlis23",
+									"text": " — what to buy, build, and stop paying for",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "techlib27",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis25",
+									"text": "AI adoption & training",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "techlis26",
+									"text": " — where AI saves real time, and where it doesn’t",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "techlib2a",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis28",
+									"text": "Websites & digital",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "techlis29",
+									"text": " — rebuilds, re-platforms, and the tools around them",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "techlib2d",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis2b",
+									"text": "Systems & tools",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "techlis2c",
+									"text": " — CRM, donor database, project tools, automations",
+									"marks": []
+								}
+							]
+						}
+					],
+					"tech_link": "Hire the technology lead →",
+					"hats_footnote": "Especially for nonprofits: built on 11 years and 1,700+ nonprofit websites with 48in48.",
+					"writing_kicker": "from the notebook",
+					"writing_heading": "Writing",
+					"writing_button": "Browse all writing",
+					"make_kicker": "things I make & run",
+					"make_heading": "The Podcast & the Companies",
+					"cta_kicker": "is it the message or the tools?",
+					"cta_heading": "Either way, I can help fix it.",
+					"cta_lead": "Bring me in as your Fractional CMO, your Technology Lead, or both. For nonprofits and growing businesses.",
+					"cta_button": "Let’s build something awesome",
+					"cta_button_2": "See how I work",
+					"superpower_kicker": "my superpower",
+					"superpower_quote": "“I make complex ideas and messages easy to understand.”",
+					"newsletter_line_1": "One email a week.",
+					"newsletter_line_2": "Practical, short, no hype.",
+					"newsletter_note": "Marketing, tech, and leadership from a dad of five and student of stoicism."
+				}
+			}
+		],
+		"now_page": [
+			{
+				"id": "now_page-main",
+				"slug": "main",
+				"status": "published",
+				"data": {
+					"title": "Now page",
+					"kicker": "what I’m up to these days",
+					"heading": "Now",
+					"updated": "November 2026",
+					"lead": "A snapshot of where my time and attention are going right now. If it’s not on this page, I’m probably saying no to it.",
+					"work_heading": "At work",
+					"work_list": [
+						{
+							"_type": "block",
+							"_key": "worklib2l",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [
+								{
+									"_key": "worklil2j",
+									"_type": "link",
+									"href": "/work-with-me"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "worklis2e",
+									"text": "Wearing two hats: ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2f",
+									"text": "Fractional CMO",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2g",
+									"text": " and ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2h",
+									"text": "Technology Lead",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2i",
+									"text": " for growing businesses. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2k",
+									"text": "How I work →",
+									"marks": [
+										"worklil2j"
+									]
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "worklib2p",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "worklis2m",
+									"text": "Helping nonprofits with technology and marketing through ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2n",
+									"text": "Enable Good",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2o",
+									"text": ". AI without the hype.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "worklib2t",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "worklis2q",
+									"text": "Executive Director of ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2r",
+									"text": "48in48",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "worklis2s",
+									"text": ", which has built 1,700+ nonprofit websites over 11 years.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"building_heading": "Building",
+					"building_list": [
+						{
+							"_type": "block",
+							"_key": "buildib2w",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "buildis2u",
+									"text": "Edgewise Media",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "buildis2v",
+									"text": ": creating marketing content fast through podcasts.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "buildib2z",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "buildis2x",
+									"text": "Together Letters",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "buildis2y",
+									"text": ": staying connected with the people important to you, outside of social media.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "buildib31",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "buildis30",
+									"text": "This website, rebuilt from WordPress onto EmDash and Astro.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"mic_heading": "On the mic",
+					"mic_list": [
+						{
+							"_type": "block",
+							"_key": "miclisb37",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [
+								{
+									"_key": "miclisl35",
+									"_type": "link",
+									"href": "https://techtalkyall.com"
+								}
+							],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "micliss32",
+									"text": "Co-hosting ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "micliss33",
+									"text": "Tech Talk, Y’all",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "micliss34",
+									"text": " with Sanjay Parekh. ",
+									"marks": []
+								},
+								{
+									"_type": "span",
+									"_key": "micliss36",
+									"text": "Listen →",
+									"marks": [
+										"miclisl35"
+									]
+								}
+							]
+						}
+					],
+					"reading_heading": "Reading",
+					"streak_text": "Still reading an hour a day. Current streak:",
+					"book_label": "On the nightstand:",
+					"book_title": "Theo of Golden",
+					"home_heading": "At home",
+					"home_list": [
+						{
+							"_type": "block",
+							"_key": "homelib39",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "homelis38",
+									"text": "Husband, father of five, in Lilburn, Georgia.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "homelib3b",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "homelis3a",
+									"text": "Studying stoicism, one hard morning at a time.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"photo_caption": "the whole crew",
+					"no_heading": "Saying no to",
+					"no_list": [
+						{
+							"_type": "block",
+							"_key": "nolistb3d",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "nolists3c",
+									"text": "Time wasters.",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "nolistb3f",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "nolists3e",
+									"text": "Social media doom scrolling.",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cta_kicker": "want the weekly version?",
+					"cta_text": "One email a week. Practical, short, no hype.",
+					"cta_button": "Subscribe on Substack"
+				}
+			}
+		],
+		"speaking_page": [
+			{
+				"id": "speaking_page-main",
+				"slug": "main",
+				"status": "published",
+				"data": {
+					"title": "Speaking page",
+					"kicker": "on stage, fedora included",
+					"heading": "Speaking",
+					"lead": "Talks and workshops on marketing, technology, and leadership, minus the hype. I make complex ideas easy to understand, and I bring that to the room.",
+					"button": "Book Adam for your event",
+					"photo_caption": "between sessions",
+					"talks_kicker": "what I talk about",
+					"talks_heading": "Talks",
+					"talks": [
+						{
+							"tag": "Marketing",
+							"title": "Best Practices Are Just Average Practices",
+							"description": "Copying what everyone else does gets you average results. This talk shows how to spot the contrarian moves that actually fit your organization, and how to test them without betting the farm. For marketing teams, founders, and nonprofit leaders tired of playing it safe.",
+							"formats": "Keynote · Workshop",
+							"highlight": false
+						},
+						{
+							"tag": "Technology",
+							"title": "AI Without the Hype",
+							"description": "A plain-English look at where AI saves real time for small teams and where it’s just a shiny distraction. Attendees leave with a short list of tools and habits they can put to work Monday morning. For nonprofit staff, executives, and small business owners.",
+							"formats": "Keynote · Workshop",
+							"highlight": true
+						},
+						{
+							"tag": "Leadership",
+							"title": "What 1,000 Days of Reading Taught Me About Leading",
+							"description": "Lessons from reading an hour a day, every day, for more than three years: on focus, consistency, and becoming the kind of leader people want to follow. For leadership teams and anyone trying to build a habit that actually sticks.",
+							"formats": "Keynote",
+							"highlight": false
+						}
+					],
+					"formats_heading": "Ways I show up",
+					"formats": [
+						{
+							"name": "Keynotes",
+							"length": "30–45 minutes"
+						},
+						{
+							"name": "Workshops",
+							"length": "90 minutes to a half day"
+						},
+						{
+							"name": "Panels & fireside chats",
+							"length": "30–60 minutes"
+						},
+						{
+							"name": "Podcast guest",
+							"length": "30–60 minutes, remote or in studio"
+						}
+					],
+					"events_heading": "Where I’ve spoken",
+					"events": [
+						{
+							"name": "WordCamp ATL",
+							"note": "Atlanta",
+							"highlight": false
+						},
+						{
+							"name": "WordCamp London",
+							"note": "London",
+							"highlight": false
+						},
+						{
+							"name": "WIT Career Expo",
+							"note": "Women in Technology",
+							"highlight": false
+						},
+						{
+							"name": "48in48 Global",
+							"note": "Nonprofit tech event",
+							"highlight": true
+						}
+					],
+					"book_kicker": "bring me in",
+					"book_heading": "Book Adam for your event.",
+					"book_lead": "Tell me about the room and what you want people to walk away with."
+				}
+			}
+		],
+		"work_page": [
+			{
+				"id": "work_page-main",
+				"slug": "main",
+				"status": "published",
+				"data": {
+					"title": "Work with me page",
+					"kicker": "is your marketing broken?",
+					"lead": "Most teams need someone to lead the message, someone to lead the tools, or both. I’ve founded two marketing agencies (sold one, still growing the other), served as a nonprofit CMO, and led 48in48 as it built 1,700+ nonprofit websites.",
+					"button": "Let’s work together",
+					"button_2": "See how I help",
+					"stat_1_number": "1,700+",
+					"stat_1_label": "nonprofit websites built through 48in48 over 11 years",
+					"stat_2_number": "2",
+					"stat_2_label": "marketing agencies founded, one sold",
+					"superpower_kicker": "my superpower",
+					"superpower_quote": "“I make complex ideas and messages easy to understand.”",
+					"services_kicker": "for businesses",
+					"services_heading": "Two ways to work together",
+					"services_lead": "For growing businesses, the help usually comes down to one of two seats at the leadership table: someone to lead your marketing, or someone to lead your technology.",
+					"cmo_kicker": "the marketing hat",
+					"cmo_title": "Fractional CMO",
+					"cmo_tagline": "Marketing leadership, without hiring a full-time executive.",
+					"cmo_text": "A three-month (or longer) engagement where I lead your marketing team to build and execute a plan.",
+					"cmo_list": [
+						{
+							"_type": "block",
+							"_key": "cmolisb3i",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "cmoliss3g",
+									"text": "Right for you if",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "cmoliss3h",
+									"text": " your marketing feels broken, or no one owns it",
+									"marks": []
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "cmolisb3l",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "cmoliss3j",
+									"text": "Engagement",
+									"marks": [
+										"strong"
+									]
+								},
+								{
+									"_type": "span",
+									"_key": "cmoliss3k",
+									"text": " three months or longer",
+									"marks": []
+								}
+							]
+						}
+					],
+					"cmo_button": "Talk about marketing →",
+					"tech_kicker": "the technology hat",
+					"tech_title": "Technology Lead",
+					"tech_tagline": "A technology plan, and someone to lead it.",
+					"tech_text": "What to buy, what to build, and what to stop paying for, plus putting AI to work without the hype.",
+					"tech_list": [
+						{
+							"_type": "block",
+							"_key": "techlib3n",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis3m",
+									"text": "Tech strategy & roadmap",
+									"marks": [
+										"strong"
+									]
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "techlib3p",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis3o",
+									"text": "AI adoption & training",
+									"marks": [
+										"strong"
+									]
+								}
+							]
+						},
+						{
+							"_type": "block",
+							"_key": "techlib3r",
+							"style": "normal",
+							"listItem": "bullet",
+							"level": 1,
+							"markDefs": [],
+							"children": [
+								{
+									"_type": "span",
+									"_key": "techlis3q",
+									"text": "Websites, systems & tools",
+									"marks": [
+										"strong"
+									]
+								}
+							]
+						}
+					],
+					"tech_button": "Talk about technology →",
+					"both_kicker": "need both?",
+					"both_text": "Message and tools usually break together. I can wear both hats.",
+					"both_link": "Let’s talk →",
+					"np_kicker": "for nonprofits",
+					"np_heading": "AI without the hype.",
+					"np_lead": "Practical technology your staff and volunteers will actually use. Built on 11 years and 1,700+ nonprofit websites with 48in48.",
+					"np_brand_line": "My nonprofit work runs through",
+					"np_brand": "Enable Good",
+					"np_button": "Talk nonprofit tech",
+					"np_1_title": "Tech strategy & roadmap",
+					"np_1_text": "What to buy, what to build, and what to stop paying for. A clear plan sized to your team and budget.",
+					"np_2_title": "AI adoption & training",
+					"np_2_text": "Hands-on training that shows your staff and volunteers where AI saves real time, and where it doesn’t.",
+					"np_3_title": "Websites & digital",
+					"np_3_text": "Site rebuilds and re-platforms, plus the digital tools that sit around them.",
+					"np_4_title": "Systems & tools",
+					"np_4_text": "Choosing and setting up your CRM, donor database, project tools, and automations so the work stops living in inboxes.",
+					"contact_kicker": "let’s talk",
+					"contact_heading": "Let’s work together & build something awesome.",
+					"contact_lead": "Tell me what feels broken. I’ll read every note myself.",
+					"contact_signoff": "thanks, I’m looking forward to connecting with you"
+				}
+			}
+		],
+		"podcast_page": [
+			{
+				"id": "podcast_page-main",
+				"slug": "main",
+				"status": "published",
+				"data": {
+					"title": "Podcast & Companies page",
+					"kicker": "things I make & run",
+					"heading": "The Podcast & the Companies",
+					"show_kicker": "on the mic",
+					"show_title": "Tech Talk, Y’all",
+					"show_text": "My podcast, co-hosted with Sanjay Parekh.",
+					"show_button": "Listen to the show →",
+					"companies_kicker": "behind the desk",
+					"companies": [
+						{
+							"role": "Executive Director",
+							"name": "48in48",
+							"description": "1,700+ nonprofit websites built over 11 years.",
+							"url": "https://48in48.org",
+							"highlight": false
+						},
+						{
+							"role": "Podcast production",
+							"name": "Edgewise Media",
+							"description": "Create marketing content fast through podcasts.",
+							"url": "https://getaword.in",
+							"highlight": false
+						},
+						{
+							"role": "Stay connected",
+							"name": "Together Letters",
+							"description": "Stay connected with the people important to you, outside of social media.",
+							"url": "https://togetherletters.com",
+							"highlight": false
+						},
+						{
+							"role": "My consulting",
+							"name": "Enable Good",
+							"description": "Marketing and technology consulting for nonprofits.",
+							"url": "https://enablegood.io",
+							"highlight": true
+						}
+					]
+				}
+			}
+		]
 	}
 }

@@ -5,12 +5,119 @@
 
 import type { BylineSummary, ContentBylineCredit, TaxonomyTerm, PortableTextBlock } from "emdash";
 
+export interface HomePage {
+  id: string;
+  slug: string | null;
+  status: string;
+  title?: string;
+  hero_kicker?: string;
+  hero_tagline?: string;
+  hero_highlight?: string;
+  hats_intro?: string;
+  subscribe_note?: string;
+  photo_caption?: string;
+  currently_1?: string;
+  currently_2?: string;
+  currently_3?: string;
+  hats_kicker?: string;
+  hats_heading?: string;
+  hats_lead?: string;
+  cmo_kicker?: string;
+  cmo_title?: string;
+  cmo_tagline?: string;
+  cmo_list?: PortableTextBlock[];
+  cmo_link?: string;
+  tech_kicker?: string;
+  tech_title?: string;
+  tech_tagline?: string;
+  tech_list?: PortableTextBlock[];
+  tech_link?: string;
+  hats_footnote?: string;
+  writing_kicker?: string;
+  writing_heading?: string;
+  writing_button?: string;
+  make_kicker?: string;
+  make_heading?: string;
+  cta_kicker?: string;
+  cta_heading?: string;
+  cta_lead?: string;
+  cta_button?: string;
+  cta_button_2?: string;
+  superpower_kicker?: string;
+  superpower_quote?: string;
+  newsletter_line_1?: string;
+  newsletter_line_2?: string;
+  newsletter_note?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface NowPage {
+  id: string;
+  slug: string | null;
+  status: string;
+  title?: string;
+  kicker?: string;
+  heading?: string;
+  updated?: string;
+  lead?: string;
+  work_heading?: string;
+  work_list?: PortableTextBlock[];
+  building_heading?: string;
+  building_list?: PortableTextBlock[];
+  mic_heading?: string;
+  mic_list?: PortableTextBlock[];
+  reading_heading?: string;
+  streak_text?: string;
+  book_label?: string;
+  book_title?: string;
+  home_heading?: string;
+  home_list?: PortableTextBlock[];
+  photo_caption?: string;
+  no_heading?: string;
+  no_list?: PortableTextBlock[];
+  cta_kicker?: string;
+  cta_text?: string;
+  cta_button?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 export interface Page {
   id: string;
   slug: string | null;
   status: string;
   title: string;
   content?: PortableTextBlock[];
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface PodcastPage {
+  id: string;
+  slug: string | null;
+  status: string;
+  title?: string;
+  kicker?: string;
+  heading?: string;
+  show_kicker?: string;
+  show_title?: string;
+  show_text?: string;
+  show_button?: string;
+  companies_kicker?: string;
+  companies?: { "role"?: string | null; "name": string; "description"?: string | null; "url"?: string | null; "highlight"?: boolean | null }[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -35,9 +142,101 @@ export interface Post {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface SpeakingPage {
+  id: string;
+  slug: string | null;
+  status: string;
+  title?: string;
+  kicker?: string;
+  heading?: string;
+  lead?: string;
+  button?: string;
+  photo_caption?: string;
+  talks_kicker?: string;
+  talks_heading?: string;
+  talks?: { "tag"?: string | null; "title": string; "description"?: string | null; "formats"?: string | null; "highlight"?: boolean | null }[];
+  formats_heading?: string;
+  formats?: { "name": string; "length"?: string | null }[];
+  events_heading?: string;
+  events?: { "name": string; "note"?: string | null; "highlight"?: boolean | null }[];
+  book_kicker?: string;
+  book_heading?: string;
+  book_lead?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
+export interface WorkPage {
+  id: string;
+  slug: string | null;
+  status: string;
+  title?: string;
+  kicker?: string;
+  lead?: string;
+  button?: string;
+  button_2?: string;
+  stat_1_number?: string;
+  stat_1_label?: string;
+  stat_2_number?: string;
+  stat_2_label?: string;
+  superpower_kicker?: string;
+  superpower_quote?: string;
+  services_kicker?: string;
+  services_heading?: string;
+  services_lead?: string;
+  cmo_kicker?: string;
+  cmo_title?: string;
+  cmo_tagline?: string;
+  cmo_text?: string;
+  cmo_list?: PortableTextBlock[];
+  cmo_button?: string;
+  tech_kicker?: string;
+  tech_title?: string;
+  tech_tagline?: string;
+  tech_text?: string;
+  tech_list?: PortableTextBlock[];
+  tech_button?: string;
+  both_kicker?: string;
+  both_text?: string;
+  both_link?: string;
+  np_kicker?: string;
+  np_heading?: string;
+  np_lead?: string;
+  np_brand_line?: string;
+  np_brand?: string;
+  np_button?: string;
+  np_1_title?: string;
+  np_1_text?: string;
+  np_2_title?: string;
+  np_2_text?: string;
+  np_3_title?: string;
+  np_3_text?: string;
+  np_4_title?: string;
+  np_4_text?: string;
+  contact_kicker?: string;
+  contact_heading?: string;
+  contact_lead?: string;
+  contact_signoff?: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 declare module "emdash" {
   interface EmDashCollections {
+    home_page: HomePage;
+    now_page: NowPage;
     pages: Page;
+    podcast_page: PodcastPage;
     posts: Post;
+    speaking_page: SpeakingPage;
+    work_page: WorkPage;
   }
 }

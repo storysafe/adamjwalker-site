@@ -1,42 +1,39 @@
 ---
 import Base from "../layouts/Base.astro";
-import { PODCAST_URL, ENABLE_GOOD_URL, TOGETHER_LETTERS_URL, EDGEWISE_URL } from "../site.config";
+import { PODCAST_URL } from "../site.config";
+import { getPageCopy } from "../page-copy";
 
-const companies = [
-	{ role: "Executive Director", name: "48in48", text: "1,700+ nonprofit websites built over 11 years.", href: "https://48in48.org", gold: false },
-	{ role: "Podcast production", name: "Edgewise Media", text: "Create marketing content fast through podcasts.", href: EDGEWISE_URL, gold: false },
-	{ role: "Stay connected", name: "Together Letters", text: "Stay connected with the people important to you, outside of social media.", href: TOGETHER_LETTERS_URL, gold: false },
-	{ role: "My consulting", name: "Enable Good", text: "Marketing and technology consulting for nonprofits.", href: ENABLE_GOOD_URL, gold: true },
-];
+const { v, e } = await getPageCopy(Astro, "podcast_page");
+const companies = (v("companies") ?? []) as Array<{ role?: string; name: string; description?: string; url?: string; highlight?: boolean }>;
 ---
 
 <Base title="Podcast & Companies" description="Tech Talk, Y’all, plus 48in48, Edgewise Media, Together Letters, and Enable Good.">
 	<header class="wrap stack" style="padding-block: 48px 40px; --stack-gap: 16px;">
-		<p class="hand hand--tilt">things I make &amp; run</p>
-		<h1 class="display" style="font-size: clamp(52px, 7vw, 84px);">The Podcast &amp; the Companies</h1>
+		<p class="hand hand--tilt" {...e("kicker")}>{v("kicker")}</p>
+		<h1 class="display" style="font-size: clamp(52px, 7vw, 84px);" {...e("heading")}>{v("heading")}</h1>
 	</header>
 
 	<section class="wrap stack" style="padding-bottom: 96px; --stack-gap: 48px;">
 		<a href={PODCAST_URL} class="banner">
 			<span class="record" aria-hidden="true"><span>TTY</span></span>
 			<span class="stack" style="flex: 999 1 380px; min-width: 0; --stack-gap: 12px;">
-				<span class="hand" style="font-size: 28px; color: var(--gold);">on the mic</span>
-				<strong style="font-family: var(--font-display); font-size: clamp(36px, 5vw, 52px); line-height: 1; letter-spacing: -0.02em;">Tech Talk, Y’all</strong>
-				<span style="font-size: 19px; color: var(--on-ink-soft);">My podcast, co-hosted with Sanjay Parekh.</span>
+				<span class="hand" style="font-size: 28px; color: var(--gold);" {...e("show_kicker")}>{v("show_kicker")}</span>
+				<strong style="font-family: var(--font-display); font-size: clamp(36px, 5vw, 52px); line-height: 1; letter-spacing: -0.02em;" {...e("show_title")}>{v("show_title")}</strong>
+				<span style="font-size: 19px; color: var(--on-ink-soft);" {...e("show_text")}>{v("show_text")}</span>
 			</span>
-			<span class="btn btn--gold" style="flex: 0 0 auto;">Listen to the show →</span>
+			<span class="btn btn--gold" style="flex: 0 0 auto;" {...e("show_button")}>{v("show_button")}</span>
 		</a>
 
 		<div class="stack" style="--stack-gap: 16px;">
-			<h2 class="hand" style="font-size: 30px; font-weight: 500;">behind the desk</h2>
-			<div class="grid" style="--min: 260px; --grid-gap: 24px;">
+			<h2 class="hand" style="font-size: 30px; font-weight: 500;" {...e("companies_kicker")}>{v("companies_kicker")}</h2>
+			<div class="grid" style="--min: 260px; --grid-gap: 24px;" {...e("companies")}>
 				{
 					companies.map((c, i) => (
-						<a href={c.href} class:list={["card", "company", { "card--gold": c.gold }]} style={`transform: rotate(${i % 2 ? 0.5 : -0.5}deg)`}>
-							<span class="label" style={c.gold ? "color: var(--ink);" : undefined}>{c.role}</span>
+						<a href={c.url} class:list={["card", "company", { "card--gold": c.highlight }]} style={`transform: rotate(${i % 2 ? 0.5 : -0.5}deg)`}>
+							<span class="label" style={c.highlight ? "color: var(--ink);" : undefined}>{c.role}</span>
 							<strong>{c.name}</strong>
-							<span class="desc">{c.text}</span>
-							<span class="more push" style={c.gold ? "color: var(--ink);" : undefined}>Visit →</span>
+							<span class="desc">{c.description}</span>
+							<span class="more push" style={c.highlight ? "color: var(--ink);" : undefined}>Visit →</span>
 						</a>
 					))
 				}
