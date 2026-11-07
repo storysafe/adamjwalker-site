@@ -29,10 +29,10 @@ export const NAV = [
 /** TODO: confirm each profile URL. */
 export const SOCIAL = [
 	{ label: "Substack", href: SUBSTACK_URL },
-	{ label: "YouTube", href: "https://www.youtube.com/" },
-	{ label: "TikTok", href: "https://www.tiktok.com/" },
-	{ label: "Instagram", href: "https://www.instagram.com/" },
-	{ label: "LinkedIn", href: "https://www.linkedin.com/" },
+	{ label: "YouTube", href: "https://www.youtube.com/@adamjwalker" },
+	{ label: "TikTok", href: "https://www.tiktok.com/@hatselfie" },
+	{ label: "Instagram", href: "https://www.instagram.com/adamwalker/" },
+	{ label: "LinkedIn", href: "https://www.linkedin.com/in/adamjwalker/" },
 ];
 
 export const PODCAST_URL = "https://techtalkyall.com";

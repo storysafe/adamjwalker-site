@@ -6,7 +6,7 @@ import SubscribeForm from "../components/SubscribeForm.astro";
 import { visiblePosts } from "../utils/posts";
 import { CATEGORY_GROUPS } from "../categories";
 import { PortableText } from "emdash/ui";
-import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
+import { PODCAST_URL, SOCIAL } from "../site.config";
 import { getPageCopy } from "../page-copy";
 
 const { entries, cacheHint } = await getEmDashCollection("posts", {
@@ -31,7 +31,7 @@ const personLd = JSON.stringify({
 	worksFor: { "@type": "Organization", name: "48in48", url: "https://48in48.org" },
 	address: { "@type": "PostalAddress", addressLocality: "Lilburn", addressRegion: "GA", addressCountry: "US" },
 	knowsAbout: ["Marketing", "Nonprofit technology", "AI adoption", "Leadership", "Podcasting"],
-	sameAs: [SUBSTACK_URL],
+	sameAs: SOCIAL.map((s) => s.href),
 });
 const companies = (show.v("companies") ?? []) as Array<{ role?: string; name: string; description?: string; url?: string; highlight?: boolean }>;
 ---
