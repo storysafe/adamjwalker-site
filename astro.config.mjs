@@ -3,6 +3,15 @@ import react from "@astrojs/react";
 import { d1, r2 } from "@emdash-cms/cloudflare";
 import { defineConfig, fontProviders } from "astro/config";
 import emdash from "emdash/astro";
+import { fileURLToPath } from "node:url";
+
+/** Sends admin emails (sign-in links, invites) through Cloudflare Email Service. */
+const cloudflareEmail = {
+	id: "cloudflare-email",
+	version: "0.1.0",
+	format: "native",
+	entrypoint: fileURLToPath(new URL("./src/plugins/cloudflare-email.ts", import.meta.url)),
+};
 
 export default defineConfig({
 	output: "server",
@@ -28,6 +37,7 @@ export default defineConfig({
 		emdash({
 			database: d1({ binding: "DB", session: "auto", coalesce: true }),
 			storage: r2({ binding: "MEDIA" }),
+			plugins: [cloudflareEmail],
 		}),
 	],
 	fonts: [
