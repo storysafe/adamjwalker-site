@@ -4,11 +4,10 @@ import Base from "../layouts/Base.astro";
 import PostCard from "../components/PostCard.astro";
 import SubscribeForm from "../components/SubscribeForm.astro";
 import { visiblePosts } from "../utils/posts";
-import { CATEGORY_GROUPS, VISIBLE_MEMBERS } from "../categories";
+import { CATEGORY_GROUPS } from "../categories";
 import { PODCAST_URL, ENABLE_GOOD_URL, TOGETHER_LETTERS_URL, EDGEWISE_URL } from "../site.config";
 
 const { entries, cacheHint } = await getEmDashCollection("posts", {
-	where: { category: VISIBLE_MEMBERS },
 	orderBy: { published_at: "desc" },
 	limit: 12,
 });

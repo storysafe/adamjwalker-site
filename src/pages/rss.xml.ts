@@ -1,7 +1,6 @@
 import type { APIRoute } from "astro";
 import { getEmDashCollection, getSiteSettings } from "emdash";
 import { visiblePosts } from "../utils/posts";
-import { VISIBLE_MEMBERS } from "../categories";
 
 import { getSiteLocale } from "../utils/locale";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
@@ -11,7 +10,6 @@ export const GET: APIRoute = async ({ site, url }) => {
 	const { siteTitle, siteTagline } = resolveBlogSiteIdentity(await getSiteSettings());
 
 	const { entries } = await getEmDashCollection("posts", {
-		where: { category: VISIBLE_MEMBERS },
 		orderBy: { published_at: "desc" },
 		limit: 30,
 	});

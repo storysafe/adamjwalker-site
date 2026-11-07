@@ -3,7 +3,7 @@ import { getEmDashCollection } from "emdash";
 import PostCard from "./PostCard.astro";
 import WritingSidebar from "./WritingSidebar.astro";
 import { visiblePosts } from "../utils/posts";
-import { CATEGORY_GROUPS, VISIBLE_MEMBERS, getGroup } from "../categories";
+import { CATEGORY_GROUPS, getGroup } from "../categories";
 
 interface Props {
 	/** Display group slug to filter by; omit for all posts. */
@@ -14,7 +14,7 @@ const { category, cursor } = Astro.props;
 const group = category ? getGroup(category) : undefined;
 
 const { entries, cacheHint, nextCursor } = await getEmDashCollection("posts", {
-	where: { category: group ? group.members : VISIBLE_MEMBERS },
+	...(group ? { where: { category: group.members } } : {}),
 	orderBy: { published_at: "desc" },
 	limit: 15,
 	cursor,

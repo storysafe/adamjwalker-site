@@ -8,7 +8,7 @@ import { formatDate } from "../../utils/locale";
 import { getReadingTime, formatReadingTime } from "../../utils/reading-time";
 import { resolveBlogSiteIdentity } from "../../utils/site-identity";
 import { visiblePosts } from "../../utils/posts";
-import { groupForPost, isHidden, VISIBLE_MEMBERS } from "../../categories";
+import { groupForPost, isHidden } from "../../categories";
 
 const slug = decodeSlug(Astro.params.slug);
 if (!slug) return Astro.rewrite("/404");
@@ -44,7 +44,7 @@ const readingTime = formatReadingTime(getReadingTime(post.data.content));
 
 // Related: newest visible posts in the same group (or overall).
 const { entries: recent, cacheHint: recentHint } = await getEmDashCollection("posts", {
-	where: { category: category ? category.members : VISIBLE_MEMBERS },
+	...(category ? { where: { category: category.members } } : {}),
 	orderBy: { published_at: "desc" },
 	limit: 8,
 });
