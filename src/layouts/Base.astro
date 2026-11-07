@@ -83,6 +83,8 @@ const year = new Date().getFullYear();
 		<EmDashHead page={pageCtx} />
 		<link rel="alternate" type="application/rss+xml" title={`${siteTitle} RSS Feed`} href="/rss.xml" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="alternate" type="text/plain" title="Site summary for AI tools" href="/llms.txt" />
+		<slot name="head" />
 	</head>
 	<body>
 		<EmDashBodyStart page={pageCtx} />

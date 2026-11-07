@@ -27,6 +27,18 @@ export default defineConfig({
 		"/free-website-consult": "/work-with-me",
 		"/website-messaging-analysis": "/work-with-me",
 		"/newsletters": "/",
+		// Old WordPress pages that have a new home
+		"/pages/about": "/now",
+		"/pages/about-the-author": "/now",
+		"/pages/home": "/",
+		"/pages/blog": "/writing",
+		"/pages/contact": "/work-with-me",
+		"/pages/speaking": "/speaking",
+		"/pages/consulting": "/work-with-me",
+		"/pages/marketing-mentor": "/work-with-me",
+		"/pages/free-website-consult": "/work-with-me",
+		"/pages/website-messaging-analysis": "/work-with-me",
+		"/pages/newsletters": "/",
 	},
 	image: {
 		layout: "constrained",

@@ -6,7 +6,7 @@ import SubscribeForm from "../components/SubscribeForm.astro";
 import { visiblePosts } from "../utils/posts";
 import { CATEGORY_GROUPS } from "../categories";
 import { PortableText } from "emdash/ui";
-import { PODCAST_URL } from "../site.config";
+import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
 import { getPageCopy } from "../page-copy";
 
 const { entries, cacheHint } = await getEmDashCollection("posts", {
@@ -20,10 +20,24 @@ const [featured, ...rest] = posts;
 const tilts = [-0.6, 0.5, -0.4, 0.4, -0.5, 0.6];
 const { v, e } = await getPageCopy(Astro, "home_page");
 const show = await getPageCopy(Astro, "podcast_page");
+const personLd = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: "Adam Walker",
+	url: Astro.url.origin,
+	image: `${Astro.url.origin}/images/adam-headshot.webp`,
+	jobTitle: ["Fractional CMO", "Technology Lead", "Executive Director, 48in48"],
+	description: "Fractional CMO and Technology Lead for nonprofits and growing businesses. Executive Director of 48in48 and co-host of Tech Talk, Y'all.",
+	worksFor: { "@type": "Organization", name: "48in48", url: "https://48in48.org" },
+	address: { "@type": "PostalAddress", addressLocality: "Lilburn", addressRegion: "GA", addressCountry: "US" },
+	knowsAbout: ["Marketing", "Nonprofit technology", "AI adoption", "Leadership", "Podcasting"],
+	sameAs: [SUBSTACK_URL],
+});
 const companies = (show.v("companies") ?? []) as Array<{ role?: string; name: string; description?: string; url?: string; highlight?: boolean }>;
 ---
 
 <Base title="Adam Walker" description="Marketing, tech & leadership, minus the hype. Fractional CMO and Technology Lead for nonprofits and growing businesses.">
+	<script slot="head" type="application/ld+json" set:html={personLd} />
 	<!-- Hero -->
 	<section class="wrap" style="padding-block: 56px 96px;">
 		<div class="split" style="gap: 64px;">
