@@ -6,9 +6,9 @@ const sent = Astro.url.searchParams.get("sent") === "1";
 const failed = Astro.url.searchParams.get("error") === "1";
 
 const talks = [
-	{ tag: "Marketing", title: "Best Practices Are Just Average Practices", formats: "Keynote · Workshop", gold: false },
-	{ tag: "Technology", title: "AI Without the Hype", formats: "Keynote · Workshop", gold: true },
-	{ tag: "Leadership", title: "What 1,000 Days of Reading Taught Me About Leading", formats: "Keynote", gold: false },
+	{ tag: "Marketing", title: "Best Practices Are Just Average Practices", desc: "Copying what everyone else does gets you average results. This talk shows how to spot the contrarian moves that actually fit your organization, and how to test them without betting the farm. For marketing teams, founders, and nonprofit leaders tired of playing it safe.", formats: "Keynote · Workshop", gold: false },
+	{ tag: "Technology", title: "AI Without the Hype", desc: "A plain-English look at where AI saves real time for small teams and where it’s just a shiny distraction. Attendees leave with a short list of tools and habits they can put to work Monday morning. For nonprofit staff, executives, and small business owners.", formats: "Keynote · Workshop", gold: true },
+	{ tag: "Leadership", title: "What 1,000 Days of Reading Taught Me About Leading", desc: "Lessons from reading an hour a day, every day, for more than three years: on focus, consistency, and becoming the kind of leader people want to follow. For leadership teams and anyone trying to build a habit that actually sticks.", formats: "Keynote", gold: false },
 ];
 const formats = [
 	["Keynotes", "30–45 minutes"],
@@ -57,7 +57,7 @@ const events = [
 						<article class:list={["card", "card--shadow", { "card--gold": t.gold }]}>
 							<span class="stamp" style={t.gold ? "border-color: var(--ink); color: var(--ink);" : undefined}>{t.tag}</span>
 							<h3 style="font-size: 30px; line-height: 1.1;">{t.title}</h3>
-							<p style={t.gold ? undefined : "color: var(--ink-soft);"}>[Two-line talk description and the audience it’s for.]</p>
+							<p style={t.gold ? undefined : "color: var(--ink-soft);"}>{t.desc}</p>
 							<span class="push" style="font-size: 14px; font-weight: 600;">{t.formats}</span>
 						</article>
 					))
