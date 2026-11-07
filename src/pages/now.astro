@@ -51,12 +51,19 @@ const updated = "November 2026";
 					<li>On the nightstand: <em>[Book title]</em> by [Author].</li>
 				</ul>
 			</section>
-			<section>
-				<h2>At home</h2>
-				<ul>
-					<li>Husband, father of five, in Lilburn, Georgia.</li>
-					<li>Studying stoicism, one hard morning at a time.</li>
-				</ul>
+			<section class="home-row">
+				<div>
+					<h2>At home</h2>
+					<ul>
+						<li>Husband, father of five, in Lilburn, Georgia.</li>
+						<li>Studying stoicism, one hard morning at a time.</li>
+					</ul>
+				</div>
+				<figure class="family">
+					<div class="tape" style="width: 90px; margin-left: -45px; transform: rotate(4deg);"></div>
+					<img src="/images/walker-family.webp" alt="The Walker family: Adam, his wife, and their five kids" width="1000" height="1333" loading="lazy" />
+					<figcaption>the whole crew</figcaption>
+				</figure>
 			</section>
 			<section>
 				<h2>Saying no to</h2>
@@ -134,6 +141,39 @@ const updated = "November 2026";
 		flex-direction: column;
 		gap: 10px;
 		font-size: 19px;
+	}
+	.home-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 28px 40px;
+		align-items: flex-start;
+	}
+	.home-row > div {
+		flex: 999 1 280px;
+		min-width: 0;
+	}
+	.family {
+		position: relative;
+		flex: 0 1 260px;
+		margin: 0 auto;
+		background: #fff;
+		padding: 10px 10px 44px;
+		box-shadow: 0 1px 0 rgba(31, 42, 46, 0.08), 0 14px 30px rgba(31, 42, 46, 0.16);
+		transform: rotate(-2deg);
+	}
+	.family img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+	.family figcaption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 8px;
+		text-align: center;
+		font-family: var(--font-hand);
+		font-size: 24px;
 	}
 	@media (max-width: 600px) {
 		.notebook {
