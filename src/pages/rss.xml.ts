@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getEmDashCollection, getSiteSettings } from "emdash";
 import { visiblePosts } from "../utils/posts";
+import { summarize } from "../utils/summary";
 
 import { getSiteLocale } from "../utils/locale";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
@@ -22,7 +23,7 @@ export const GET: APIRoute = async ({ site, url }) => {
 
 			const postUrl = new URL(`/writing/${post.id}`, siteUrl).href;
 			const title = escapeXml(post.data.title || "Untitled");
-			const description = escapeXml(post.data.excerpt || "");
+			const description = escapeXml(summarize(post.data.content, post.data.excerpt, 300) || "");
 
 			return `    <item>
       <title>${title}</title>

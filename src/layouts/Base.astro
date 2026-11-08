@@ -42,6 +42,8 @@ const settingsResult = await getSiteSettingsWithCacheHint();
 if (Astro.cache?.enabled) Astro.cache.set(settingsResult.cacheHint);
 
 const { siteTitle, siteTagline } = resolveBlogSiteIdentity(settingsResult.data);
+// Pages without their own image share the branded card.
+const shareImage = image || `${Astro.url.origin}/images/og-default.jpg`;
 const fullTitle =
 	title === siteTitle || title.endsWith(`— ${siteTitle}`) ? title : `${title} — ${siteTitle}`;
 
@@ -53,9 +55,9 @@ const pageCtx = createPublicPageContext({
 	pageTitle: pageTitle ?? title,
 	description: description ?? siteTagline,
 	canonical,
-	image,
+	image: shareImage,
 	content,
-	seo: { ogImage: image, robots },
+	seo: { ogImage: shareImage, robots },
 	articleMeta: { publishedTime, modifiedTime, author },
 	siteName: siteTitle,
 });

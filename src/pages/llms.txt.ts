@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { allVisiblePosts } from "../utils/all-posts";
+import { summarize } from "../utils/summary";
 import { CATEGORY_GROUPS } from "../categories";
 import { PODCAST_URL, SUBSTACK_URL } from "../site.config";
 
@@ -32,7 +33,7 @@ ${CATEGORY_GROUPS.map((g) => line(g.label, `${o}/writing/category/${g.slug}`)).j
 
 ## Recent writing
 
-${recent.map(({ post }) => line(post.data.title, `${o}/writing/${post.id}`, post.data.excerpt)).join("\n")}
+${recent.map(({ post }) => line(post.data.title, `${o}/writing/${post.id}`, summarize(post.data.content, post.data.excerpt))).join("\n")}
 
 ## Optional
 

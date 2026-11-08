@@ -8,6 +8,7 @@ import { formatDate } from "../../utils/locale";
 import { getReadingTime, formatReadingTime } from "../../utils/reading-time";
 import { resolveBlogSiteIdentity } from "../../utils/site-identity";
 import { visiblePosts } from "../../utils/posts";
+import { summarize } from "../../utils/summary";
 import { groupForPost, isHidden } from "../../categories";
 
 const slug = decodeSlug(Astro.params.slug);
@@ -35,6 +36,8 @@ const seo = getSeoMeta(post, {
 	path: Astro.url.pathname.replace(/\/$/, ""),
 	defaultOgImage: imageUrl(post.data.featured_image),
 });
+// Explicit SEO description, then excerpt, then the post's opening sentences.
+const description = (post.data as any).seo?.description || summarize(post.data.content, post.data.excerpt) || seo.description;
 
 const postSlugs = (post.data.terms?.category ?? []).map((t: { slug: string }) => t.slug);
 const hidden = isHidden(postSlugs);
@@ -55,7 +58,7 @@ const related = (await visiblePosts(recent)).map((p) => p.post).filter((p) => p.
 <Base
 	title={seo.title}
 	pageTitle={seo.ogTitle}
-	description={seo.description}
+	description={description}
 	image={seo.ogImage}
 	canonical={seo.canonical}
 	robots={seo.robots}
