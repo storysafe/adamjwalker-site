@@ -7,11 +7,11 @@ import { getPageCopy } from "../page-copy";
 const { v, e } = await getPageCopy(Astro, "now_page");
 
 /**
- * Reading streak counts up by itself: 1,323 days on Nov 7, 2026,
- * plus one for every day since (Eastern time). If the streak ever
- * resets, change these two values.
+ * Reading streak counts up by itself: the saved count on the saved date,
+ * plus one for every day since (Eastern time). If the streak resets,
+ * change "streak_days" and "streak_as_of" on the Now page entry in EmDash.
  */
-const STREAK_ON = { date: "2026-11-07", days: 1323 };
+const STREAK_ON = { date: String(v("streak_as_of")), days: Number(v("streak_days")) };
 const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
 const daysSince = Math.round((Date.parse(todayET) - Date.parse(STREAK_ON.date)) / 86_400_000);
 const streak = (STREAK_ON.days + Math.max(0, daysSince)).toLocaleString("en-US");

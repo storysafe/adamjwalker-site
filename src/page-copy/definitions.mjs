@@ -115,6 +115,8 @@ export const PAGES = [
 			]],
 			["reading_heading", "string", "Reading: heading", "Reading"],
 			["streak_text", "string", "Reading: streak line (the day count updates itself)", "Still reading an hour a day. Current streak:"],
+			["streak_days", "integer", "Reading: streak count on the date below (only change if the streak resets)", 1323],
+			["streak_as_of", "string", "Reading: date of that count (YYYY-MM-DD)", "2026-11-07"],
 			["book_label", "string", "Reading: book label", "On the nightstand:"],
 			["book_title", "string", "Reading: current book", "Theo of Golden"],
 			["home_heading", "string", "At home: heading", "At home"],
